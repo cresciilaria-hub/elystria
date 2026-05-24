@@ -9,7 +9,7 @@ progetto scolastico realizzato da Ilaria, Martina e Jolanda (GrowUp Agency).
 - [ ] Il Team (`team.html`)
 - [ ] Il Progetto (`progetto.html`)
 - [x] Personaggi (`personaggi.html`) — griglia + popup scheda (3 protagonisti + 4 Dei)
-- [ ] I Regni (`regni.html`)
+- [x] I Regni (`regni.html`) — comparatore slider sana→corrotta per i 4 Regni
 - [ ] Meccaniche (`meccaniche.html`)
 - [ ] Timeline (`timeline.html`)
 - [ ] Galleria (`galleria.html`)

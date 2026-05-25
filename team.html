@@ -11,6 +11,7 @@
   :root{
     --nero:#0a0810;--oro:#e6c068;--oro-chiaro:#f8e4b0;--oro-scuro:#9c7a32;
     --fiamma:#ffce4d;--testo:#f0ead8;--testo-soft:#c4baa4;--bordo:rgba(230,192,104,0.25);
+    --acqua:#3fb8d4;--fuoco:#f5783c;--terra:#6eaa50;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -38,7 +39,7 @@
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
   .burger span{width:26px;height:2px;background:var(--oro-chiaro);transition:.3s}
 
-  .page-hero{position:relative;padding:160px 24px 60px;text-align:center;overflow:hidden}
+  .page-hero{position:relative;padding:160px 24px 50px;text-align:center;overflow:hidden}
   .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(230,192,104,0.1),transparent 70%)}
   .page-hero-inner{position:relative;z-index:2}
   .page-kicker{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.45em;text-transform:uppercase;color:var(--oro-chiaro);margin-bottom:18px;opacity:0;animation:fadeUp 1s ease .2s forwards}
@@ -46,27 +47,54 @@
   .page-subtitle{font-style:italic;font-size:clamp(1.5rem,3vw,2.1rem);color:var(--testo);margin-top:18px;max-width:760px;margin-left:auto;margin-right:auto;opacity:0;animation:fadeUp 1s ease .6s forwards}
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-  .agency{max-width:820px;margin:0 auto;padding:30px 32px 0;text-align:center}
+  .agency{max-width:860px;margin:0 auto;padding:20px 32px 0;text-align:center}
   .agency p{font-size:1.5rem;color:var(--testo-soft)}
   .agency .name{color:var(--oro-chiaro);font-family:'Cinzel',serif;letter-spacing:.05em}
 
-  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:1100px;margin:60px auto 0;padding:0 32px}
-  .member{background:linear-gradient(160deg,#15121f,#0d0b14);border:1px solid var(--bordo);border-radius:14px;padding:44px 32px;text-align:center;transition:transform .4s,box-shadow .4s;opacity:0;transform:translateY(40px)}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:1140px;margin:56px auto 0;padding:0 32px}
+  .member{position:relative;border-radius:14px;overflow:hidden;cursor:pointer;background:#13111c;border:1px solid var(--bordo);transition:transform .4s,box-shadow .4s;opacity:0;transform:translateY(40px)}
   .member.visible{opacity:1;transform:translateY(0)}
-  .member:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.6),0 0 40px rgba(230,192,104,0.12)}
-  .avatar{width:140px;height:140px;border-radius:50%;margin:0 auto 26px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 40% 35%,rgba(230,192,104,0.25),rgba(13,11,20,0.6));border:2px solid var(--oro);box-shadow:0 0 30px rgba(230,192,104,0.2);position:relative}
-  .avatar span{font-family:'Cinzel',serif;font-weight:700;font-size:3rem;color:var(--oro-chiaro)}
-  .member h3{font-family:'Cinzel',serif;font-weight:700;font-size:2rem;color:var(--oro-chiaro);margin-bottom:6px}
-  .member .role{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.15em;text-transform:uppercase;color:var(--oro);margin-bottom:18px}
-  .member p{font-size:1.25rem;color:var(--testo-soft)}
-  .member .deco-line{width:50px;height:2px;background:var(--oro-scuro);margin:0 auto 18px}
+  .member:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.6),0 0 40px rgba(230,192,104,0.14)}
+  .member-img{position:relative;aspect-ratio:3/4;overflow:hidden}
+  .member-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform 1s ease}
+  .member:hover .member-img img{transform:scale(1.06)}
+  .member-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(10,8,16,0.96))}
+  .member-cap{position:absolute;left:0;right:0;bottom:0;padding:24px 24px 26px;z-index:2}
+  .member-el{display:inline-block;font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:20px;border:1px solid;margin-bottom:10px}
+  .member-el.acqua{color:var(--acqua);border-color:var(--acqua)}
+  .member-el.terra{color:var(--terra);border-color:var(--terra)}
+  .member-el.fuoco{color:var(--fuoco);border-color:var(--fuoco)}
+  .member-name{font-family:'Cinzel',serif;font-weight:700;font-size:1.9rem;color:var(--oro-chiaro);line-height:1.1;margin-bottom:6px}
+  .member-role{font-size:1.15rem;color:var(--testo);font-style:italic}
+  .tap-hint{position:absolute;top:16px;right:16px;z-index:3;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;color:var(--oro-chiaro);background:rgba(10,8,16,0.7);border:1px solid var(--bordo);border-radius:20px;padding:5px 14px;opacity:0;transition:opacity .3s}
+  .member:hover .tap-hint{opacity:1}
 
-  .note{max-width:760px;margin:50px auto 0;font-size:1.15rem;color:var(--oro-scuro);font-style:italic;text-align:center;opacity:.8}
+  .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(5,4,9,0.86);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;visibility:hidden;transition:opacity .35s}
+  .modal-overlay.open{opacity:1;visibility:visible}
+  .modal{position:relative;max-width:980px;width:100%;max-height:90vh;overflow-y:auto;background:linear-gradient(160deg,#15121f,#0c0a12);border:1px solid var(--bordo);border-radius:14px;box-shadow:0 40px 100px rgba(0,0,0,0.7);transform:scale(.92) translateY(20px);transition:transform .35s}
+  .modal-overlay.open .modal{transform:scale(1) translateY(0)}
+  .modal-grid{display:grid;grid-template-columns:360px 1fr}
+  .modal-img{position:relative;overflow:hidden;min-height:560px;background:#0d0b14}
+  .modal-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .modal-body{padding:44px 46px 48px}
+  .modal-el{display:inline-block;font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.15em;text-transform:uppercase;padding:5px 16px;border-radius:20px;border:1px solid;margin-bottom:14px}
+  .modal-el.acqua{color:var(--acqua);border-color:var(--acqua)}
+  .modal-el.terra{color:var(--terra);border-color:var(--terra)}
+  .modal-el.fuoco{color:var(--fuoco);border-color:var(--fuoco)}
+  .modal-name{font-family:'Cinzel',serif;font-weight:800;font-size:2.4rem;color:var(--oro-chiaro);line-height:1.1;margin-bottom:6px}
+  .modal-role{font-size:1.25rem;color:var(--fiamma);font-style:italic;margin-bottom:8px}
+  .modal-label{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--oro);margin:24px 0 10px;display:flex;align-items:center;gap:12px}
+  .modal-label::after{content:'';flex:1;height:1px;background:var(--bordo)}
+  .modal-body p{font-size:1.26rem;color:var(--testo-soft);margin-bottom:14px}
+  .modal-avatar-quote{font-style:italic;color:var(--testo);border-left:3px solid var(--oro-scuro);padding-left:20px}
+  .modal-close{position:absolute;top:16px;right:18px;z-index:5;width:46px;height:46px;border-radius:50%;background:rgba(10,8,16,0.75);border:1px solid var(--bordo);color:var(--oro-chiaro);font-size:1.7rem;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .25s}
+  .modal-close:hover{background:var(--oro);color:var(--nero);transform:rotate(90deg)}
 
   footer{position:relative;z-index:2;border-top:1px solid var(--bordo);padding:50px 24px 40px;text-align:center;background:rgba(10,8,16,0.7);margin-top:80px}
   footer .f-title{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.2em;color:var(--oro);margin-bottom:12px}
   footer p{font-size:1.3rem;color:var(--testo-soft);margin:4px 0}
 
+  @media(max-width:980px){.team-grid{grid-template-columns:1fr 1fr;max-width:720px}}
   @media(max-width:880px){
     header{padding:14px 20px}
     nav{position:fixed;top:0;right:-100%;width:78%;max-width:340px;height:100vh;flex-direction:column;align-items:flex-start;gap:0;background:rgba(10,9,16,0.99);backdrop-filter:blur(16px);padding:90px 30px 30px;transition:right .4s ease;border-left:1px solid var(--bordo);overflow-y:auto}
@@ -77,8 +105,12 @@
     .dropdown.open-mob .dropdown-menu{max-height:300px;padding:4px 0}
     .lang{margin:20px 0 0 0}
     .burger{display:flex;z-index:101}
-    .team-grid{grid-template-columns:1fr;max-width:380px}
+    .modal-grid{grid-template-columns:1fr}
+    .modal-img{min-height:auto;aspect-ratio:1/1}
+    .modal-body{padding:32px 28px 36px}
+    .modal-name{font-size:2rem}
   }
+  @media(max-width:560px){.team-grid{grid-template-columns:1fr;max-width:380px}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
@@ -113,39 +145,25 @@
   <div class="page-hero-inner">
     <div class="page-kicker" data-it="Le menti dietro Elystria" data-en="The minds behind Elystria">Le menti dietro Elystria</div>
     <h1 class="page-title" data-it="Il Team" data-en="The Team">Il Team</h1>
-    <p class="page-subtitle" data-it="Tre studentesse, una sola visione fantasy" data-en="Three students, one fantasy vision">Tre studentesse, una sola visione fantasy</p>
+    <p class="page-subtitle" data-it="Tre specialiste, tre elementi, una sola visione" data-en="Three specialists, three elements, one vision">Tre specialiste, tre elementi, una sola visione</p>
   </div>
 </section>
 
 <div class="agency">
-  <p data-it="Elystria è stato sviluppato da <span class='name'>GrowUp Agency</span>, il team creativo formato da Ilaria, Martina e Jolanda. Insieme hanno curato ogni aspetto del progetto, dalla scrittura alla grafica, dal video allo sviluppo del sito." data-en="Elystria was developed by <span class='name'>GrowUp Agency</span>, the creative team formed by Ilaria, Martina and Jolanda. Together they handled every aspect of the project, from writing to graphics, from video to website development.">Elystria è stato sviluppato da <span class="name">GrowUp Agency</span>, il team creativo formato da Ilaria, Martina e Jolanda. Insieme hanno curato ogni aspetto del progetto, dalla scrittura alla grafica, dal video allo sviluppo del sito.</p>
+  <p data-it="Elystria è stato sviluppato da <span class='name'>GrowUp Digital</span>, il team creativo formato da Jolanda, Ilaria e Martina. Ognuna incarna un elemento del mondo di gioco. Tocca una scheda per scoprire il suo ruolo." data-en="Elystria was developed by <span class='name'>GrowUp Digital</span>, the creative team formed by Jolanda, Ilaria and Martina. Each embodies an element of the game world. Tap a card to discover her role.">Elystria è stato sviluppato da <span class="name">GrowUp Digital</span>, il team creativo formato da Jolanda, Ilaria e Martina. Ognuna incarna un elemento del mondo di gioco. Tocca una scheda per scoprire il suo ruolo.</p>
 </div>
 
-<div class="team-grid">
-  <div class="member">
-    <div class="avatar"><span>I</span></div>
-    <h3>Ilaria</h3>
-    <div class="role" data-it="Team creativo" data-en="Creative team">Team creativo</div>
-    <div class="deco-line"></div>
-    <p data-it="Ha contribuito allo sviluppo del progetto Elystria in tutte le sue fasi. (Ruolo da definire)" data-en="Contributed to the development of the Elystria project in all its phases. (Role to be defined)">Ha contribuito allo sviluppo del progetto Elystria in tutte le sue fasi. (Ruolo da definire)</p>
-  </div>
-  <div class="member">
-    <div class="avatar"><span>M</span></div>
-    <h3>Martina</h3>
-    <div class="role" data-it="Team creativo" data-en="Creative team">Team creativo</div>
-    <div class="deco-line"></div>
-    <p data-it="Ha contribuito allo sviluppo del progetto Elystria in tutte le sue fasi. (Ruolo da definire)" data-en="Contributed to the development of the Elystria project in all its phases. (Role to be defined)">Ha contribuito allo sviluppo del progetto Elystria in tutte le sue fasi. (Ruolo da definire)</p>
-  </div>
-  <div class="member">
-    <div class="avatar"><span>J</span></div>
-    <h3>Jolanda</h3>
-    <div class="role" data-it="Team creativo" data-en="Creative team">Team creativo</div>
-    <div class="deco-line"></div>
-    <p data-it="Ha contribuito allo sviluppo del progetto Elystria in tutte le sue fasi. (Ruolo da definire)" data-en="Contributed to the development of the Elystria project in all its phases. (Role to be defined)">Ha contribuito allo sviluppo del progetto Elystria in tutte le sue fasi. (Ruolo da definire)</p>
+<div class="team-grid" id="teamGrid"></div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Chiudi">×</button>
+    <div class="modal-grid">
+      <div class="modal-img" id="modalImg"></div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
   </div>
 </div>
-
-<p class="note" data-it="I ruoli specifici verranno aggiornati prossimamente." data-en="Specific roles will be updated soon.">I ruoli specifici verranno aggiornati prossimamente.</p>
 
 <footer>
   <div class="f-title">ELYSTRIA — La Fiamma Primordiale</div>
@@ -154,19 +172,105 @@
 </footer>
 
 <script>
+  const team = {
+    jolanda:{
+      name:"Jolanda Lombardi",
+      img:"assets/img/team_jolanda.jpg",
+      el:"acqua", elIcon:"💧",
+      elName:{it:"Acqua",en:"Water"},
+      role:{it:"Water Specialist · Creative Director · Concept Artist",en:"Water Specialist · Creative Director · Concept Artist"},
+      team:{it:["Jolanda si è occupata della grafica dei personaggi, del mondo e degli elementi visivi del gioco, contribuendo alla definizione della prima identità visiva coerente del progetto. Ha inoltre guidato la componente narrativa di Elystria, ideando la trama principale, il background dei personaggi e le dinamiche di gioco, attraverso un confronto aperto e costante con tutto il team, anche in momenti di discussione particolarmente vivaci.","A partire da questa base creativa, ha sviluppato i contenuti visivi del progetto, occupandosi della generazione di immagini e video tramite piattaforme avanzate di intelligenza artificiale come Gemini, Flow e Midjourney. Si è infine occupata del montaggio del trailer utilizzando DaVinci Resolve, curando ritmo narrativo, sequenze e coerenza visiva del prodotto finale."],
+        en:["Jolanda handled the graphics of the characters, the world and the visual elements of the game, helping to define the project's first coherent visual identity. She also led the narrative side of Elystria, conceiving the main plot, the characters' backgrounds and the game dynamics, through open and constant discussion with the whole team, even in particularly lively moments.","From this creative foundation, she developed the project's visual content, generating images and videos through advanced AI platforms such as Gemini, Flow and Midjourney. Finally, she edited the trailer using DaVinci Resolve, taking care of narrative pace, sequences and the visual coherence of the final product."]},
+      avatar:{it:"Può sembrare calma e silenziosa come uno specchio d'acqua, ma basta un attimo per rompere il ghiaccio e liberare la mia natura super solare. Quando un'idea mi appassiona, divento una forza della natura: travolgo ogni ostacolo e non lascio mai le cose a metà. Curo ogni singola goccia del progetto finché non è impeccabile. Pignola? No, è solo la grinta di una corrente inarrestabile!",
+        en:"She may seem as calm and silent as a still pool, but it takes only a moment to break the ice and release my super sunny nature. When an idea excites me, I become a force of nature: I sweep away every obstacle and never leave things half-done. I tend to every single drop of the project until it is flawless. Picky? No, it's just the grit of an unstoppable current!"}
+    },
+    ilaria:{
+      name:"Ilaria Cresci",
+      img:"assets/img/team_ilaria.jpg",
+      el:"terra", elIcon:"⛰️",
+      elName:{it:"Terra",en:"Earth"},
+      role:{it:"Earth Specialist · Lead UI/UX · Asset Developer",en:"Earth Specialist · Lead UI/UX · Asset Developer"},
+      team:{it:["Ilaria ha infuso la sua stessa essenza in questo grande progetto, scolpendo l'intera identità grafica dalle fondamenta: dalla scelta geometrica dei font e delle palette cromatiche, fino allo stile visivo generale. Ha plasmato personalmente, come argilla tra le mani, la modellazione 3D e la stampa del merchandising di Zython che potete ammirare oggi qui in presentazione.","Inoltre, lavorando in sinergia con il team, ha gettato le basi del sito web partendo dalla piattaforma AI Lovable, consolidando e perfezionando poi l'opera attraverso altri software avanzati."],
+        en:["Ilaria infused her very essence into this great project, sculpting the entire graphic identity from the ground up: from the geometric choice of fonts and color palettes to the overall visual style. She personally shaped, like clay in her hands, the 3D modeling and printing of the Zython merchandising you can admire here in the presentation today.","Moreover, working in synergy with the team, she laid the foundations of the website starting from the AI platform Lovable, then consolidating and refining the work through other advanced software."]},
+      avatar:{it:"Pilastro incrollabile del mio regno, lei governa le fondamenta stesse di Elystria. Il suo potere risiede nella precisione e nella cura meticolosa dei dettagli, solida come la roccia: analizza le risorse, traccia le rotte dello sviluppo e protegge l'integrità del progetto da ogni insidia esterna, come una montagna invalicabile. Radicata e determinata, è la forza stabile che cattura le idee sospese nel vuoto e le trasforma in una realtà solida, tangibile e duratura, dando stabilità e nutrimento all'intero viaggio.",
+        en:"An unshakable pillar of my realm, she governs the very foundations of Elystria. Her power lies in precision and meticulous attention to detail, solid as rock: she analyzes resources, charts the routes of development and protects the integrity of the project from every external threat, like an impassable mountain. Rooted and determined, she is the stable force that captures ideas suspended in the void and turns them into a solid, tangible and lasting reality, giving stability and nourishment to the whole journey."}
+    },
+    martina:{
+      name:"Martina Moranda",
+      img:"assets/img/team_martina.jpg",
+      el:"fuoco", elIcon:"🔥",
+      elName:{it:"Fuoco",en:"Fire"},
+      role:{it:"Fire Specialist · Lead Narrative Designer",en:"Fire Specialist · Lead Narrative Designer"},
+      team:{it:["Martina si è concentrata sulla componente testuale e concettuale di Elystria, scrivendo testi unici e personalizzati che hanno arricchito la storia di dettagli fondamentali. Questo profondo lavoro di scrittura ha gettato le basi per facilitare la successiva creazione di immagini e video.","Successivamente, oltre ad aver curato personalmente la grafica del pieghevole a tre ante che oggi potete vedere, ha curato l'intero comparto audio e il sound design del trailer, gestendo gli effetti sonori attraverso l'uso di software e piattaforme come DaVinci Resolve, Suno AI e Freesound."],
+        en:["Martina focused on the textual and conceptual side of Elystria, writing unique and personalized texts that enriched the story with fundamental details. This deep writing work laid the foundations to facilitate the subsequent creation of images and videos.","Later, in addition to personally designing the three-panel brochure you can see today, she curated the entire audio department and the sound design of the trailer, handling sound effects through software and platforms such as DaVinci Resolve, Suno AI and Freesound."]},
+      avatar:{it:"Custode dell'elemento del Fuoco. Versatile e affidabile, Martina tesse le trame di Elystria unendo una natura dolce a una mente calma e lucida nelle decisioni strategiche. Il suo Fuoco non distrugge, ma trasforma: plasma le idee, infonde calore nei testi e forgia la struttura del regno. Custode di una scintilla perenne, riversa la sua grinta in ogni leggenda, guidando l'intera gilda del team.",
+        en:"Keeper of the element of Fire. Versatile and reliable, Martina weaves the threads of Elystria, combining a gentle nature with a calm and lucid mind in strategic decisions. Her Fire does not destroy, but transforms: it shapes ideas, infuses warmth into the texts and forges the structure of the realm. Guardian of a perennial spark, she pours her grit into every legend, guiding the entire guild of the team."}
+    }
+  };
+  const order=['jolanda','ilaria','martina'];
+  let currentLang='it';
+
+  function renderGrid(){
+    document.getElementById('teamGrid').innerHTML=order.map(k=>{
+      const m=team[k];
+      const hint=currentLang==='it'?'Scopri ›':'Discover ›';
+      return `<div class="member" data-key="${k}">
+        <span class="tap-hint">${hint}</span>
+        <div class="member-img"><img src="${m.img}" alt="${m.name}"></div>
+        <div class="member-cap">
+          <span class="member-el ${m.el}">${m.elIcon} ${m.elName[currentLang]}</span>
+          <div class="member-name">${m.name}</div>
+          <div class="member-role">${m.role[currentLang]}</div>
+        </div>
+      </div>`;
+    }).join('');
+    document.querySelectorAll('.member').forEach(c=>c.addEventListener('click',()=>openModal(c.dataset.key)));
+    observe();
+  }
+
+  function openModal(k){
+    const m=team[k];
+    document.getElementById('modalImg').innerHTML=`<img src="${m.img}" alt="${m.name}">`;
+    const labelRuolo=currentLang==='it'?'Il ruolo nel team':'Role in the team';
+    const labelAvatar=currentLang==='it'?"L'avatar di Elystria":"The Elystria avatar";
+    const teamParas=m.team[currentLang].map(p=>`<p>${p}</p>`).join('');
+    document.getElementById('modalBody').innerHTML=
+      `<span class="modal-el ${m.el}">${m.elIcon} ${m.elName[currentLang]}</span>
+       <div class="modal-name">${m.name}</div>
+       <div class="modal-role">${m.role[currentLang]}</div>
+       <div class="modal-label">${labelRuolo}</div>
+       ${teamParas}
+       <div class="modal-label">${labelAvatar}</div>
+       <p class="modal-avatar-quote">${m.avatar[currentLang]}</p>`;
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow='hidden';
+  }
+  function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+  function observe(){
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.2});
+    document.querySelectorAll('.member').forEach((m,i)=>{m.style.transitionDelay=(i*120)+'ms';io.observe(m)});
+  }
+
   function setLang(lang){
+    currentLang=lang;
     document.documentElement.lang=lang;
     document.querySelectorAll('[data-it]').forEach(el=>{const t=el.getAttribute('data-'+lang);if(t!==null)el.innerHTML=t});
     document.getElementById('lang-it').classList.toggle('active',lang==='it');
     document.getElementById('lang-en').classList.toggle('active',lang==='en');
+    renderGrid();
   }
+
   const header=document.getElementById('header');
   window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>40));
   const burger=document.getElementById('burger'),nav=document.getElementById('nav');
   burger.addEventListener('click',()=>nav.classList.toggle('open'));
   document.getElementById('dropGioco').querySelector('.dropdown-btn').addEventListener('click',e=>{if(window.innerWidth<=880){e.preventDefault();document.getElementById('dropGioco').classList.toggle('open-mob')}});
-  const io=new IntersectionObserver(es=>es.forEach((e)=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.2});
-  document.querySelectorAll('.member').forEach((m,i)=>{m.style.transitionDelay=(i*120)+'ms';io.observe(m)});
+
+  renderGrid();
 </script>
 </body>
 </html>

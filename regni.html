@@ -11,129 +11,113 @@
   :root{
     --nero:#0a0810;--oro:#e6c068;--oro-chiaro:#f8e4b0;--oro-scuro:#9c7a32;
     --fiamma:#ffce4d;--testo:#f0ead8;--testo-soft:#c4baa4;--bordo:rgba(230,192,104,0.25);
-    --viola:#8b5cf6;
+    --acqua:#3fb8d4;--fuoco:#f5783c;--terra:#6eaa50;--aria:#c8dcf0;--corruzione:#9d5bd2;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{background:var(--nero);color:var(--testo);font-family:'Cormorant Garamond',serif;font-size:18px;overflow-x:hidden;line-height:1.6}
+  body{background:var(--nero);color:var(--testo);font-family:'Cormorant Garamond',serif;font-size:24px;overflow-x:hidden;line-height:1.6}
 
-  /* MENU (identico alle altre pagine) */
+  /* MENU */
   header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 42px;transition:all .4s ease}
   header.scrolled{background:rgba(10,8,16,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--bordo);padding:12px 42px}
-  .brand{font-family:'Cinzel',serif;font-weight:700;font-size:1.5rem;letter-spacing:.18em;color:var(--oro-chiaro);text-decoration:none;text-shadow:0 0 18px rgba(230,192,104,0.4)}
+  .brand{display:flex;align-items:center;text-decoration:none}
+  .brand img{height:46px;width:auto;display:block;filter:drop-shadow(0 2px 12px rgba(230,192,104,0.35));transition:height .4s ease}
+  header.scrolled .brand img{height:38px}
   nav{display:flex;align-items:center;gap:6px}
-  nav a,.dropdown-btn{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--testo-soft);text-decoration:none;padding:10px 14px;background:none;border:none;cursor:pointer;position:relative;transition:color .3s}
-  nav a:hover,.dropdown-btn:hover,nav a.active,.dropdown-btn.active{color:var(--oro-chiaro)}
+  nav a,.dropdown-btn{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;color:var(--testo-soft);text-decoration:none;padding:10px 14px;background:none;border:none;cursor:pointer;position:relative;transition:color .3s}
+  nav a:hover,.dropdown-btn:hover,nav a.active{color:var(--oro-chiaro)}
   nav a::after{content:'';position:absolute;left:14px;right:14px;bottom:4px;height:1px;background:var(--oro);transform:scaleX(0);transition:transform .3s}
   nav a:hover::after,nav a.active::after{transform:scaleX(1)}
   .dropdown{position:relative}
+  .dropdown-btn.active-page{color:var(--oro-chiaro)}
   .dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);background:rgba(13,11,20,0.98);border:1px solid var(--bordo);border-radius:4px;min-width:190px;padding:8px 0;opacity:0;visibility:hidden;transition:all .3s;box-shadow:0 20px 50px rgba(0,0,0,0.6)}
   .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(4px)}
   .dropdown-menu a{display:block;padding:10px 22px;text-align:left}
   .dropdown-menu a::after{display:none}
   .dropdown-menu a:hover{background:rgba(230,192,104,0.08)}
+  .dropdown-menu a.active{color:var(--oro-chiaro)}
   .lang{display:flex;gap:2px;margin-left:14px;border:1px solid var(--bordo);border-radius:3px;overflow:hidden}
-  .lang button{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.1em;background:none;border:none;color:var(--testo-soft);padding:7px 11px;cursor:pointer;transition:all .25s}
+  .lang button{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.1em;background:none;border:none;color:var(--testo-soft);padding:7px 11px;cursor:pointer;transition:all .25s}
   .lang button.active{background:var(--oro);color:var(--nero);font-weight:700}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
   .burger span{width:26px;height:2px;background:var(--oro-chiaro);transition:.3s}
 
-  /* HERO di pagina */
-  .page-hero{position:relative;height:62vh;min-height:440px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-  .page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 45%;filter:brightness(.5) saturate(1.05)}
-  .page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%, transparent, rgba(10,8,16,0.85) 75%),linear-gradient(180deg,rgba(10,8,16,0.7),transparent 40%,rgba(10,8,16,0.95))}
+  /* HERO */
+  .page-hero{position:relative;height:54vh;min-height:400px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 40%;filter:brightness(.45) saturate(1.05)}
+  .page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%, transparent, rgba(10,8,16,0.85) 75%),linear-gradient(180deg,rgba(10,8,16,0.7),transparent 40%,rgba(10,8,16,0.97))}
   .page-hero-inner{position:relative;z-index:2;padding:0 24px}
-  .page-kicker{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.5em;text-transform:uppercase;color:var(--oro-chiaro);margin-bottom:18px;opacity:0;animation:fadeUp 1s ease .2s forwards}
+  .page-kicker{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.45em;text-transform:uppercase;color:var(--oro-chiaro);margin-bottom:18px;opacity:0;animation:fadeUp 1s ease .2s forwards}
   .page-title{font-family:'Cinzel',serif;font-weight:800;font-size:clamp(2.6rem,7vw,5rem);color:var(--oro-chiaro);letter-spacing:.04em;text-shadow:0 0 50px rgba(255,206,77,0.4);opacity:0;animation:fadeUp 1s ease .4s forwards}
-  .page-subtitle{font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--testo);margin-top:18px;opacity:0;animation:fadeUp 1s ease .6s forwards}
+  .page-subtitle{font-style:italic;font-size:clamp(1.5rem,3vw,2.1rem);color:var(--testo);margin-top:18px;opacity:0;animation:fadeUp 1s ease .6s forwards}
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-  /* INTRO */
-  .intro{max-width:860px;margin:0 auto;padding:80px 24px 20px;text-align:center}
-  .intro p{font-size:1.2rem;color:var(--testo-soft)}
-  .intro .hint{margin-top:26px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-scuro)}
-  .intro .hint span{color:var(--oro-chiaro)}
+  .intro-realms{max-width:900px;margin:0 auto;padding:70px 32px 20px;text-align:center}
+  .intro-realms p{font-size:1.5rem;color:var(--testo-soft)}
 
-  /* ====== REGNO ====== */
-  .realms{max-width:1180px;margin:0 auto;padding:50px 32px 30px;display:flex;flex-direction:column;gap:90px}
-  .realm{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-  .realm.reverse .realm-info{order:2}
-  .realm.reverse .realm-compare{order:1}
+  /* REGNO - sezione immersiva */
+  .realm{position:relative;min-height:88vh;display:flex;align-items:center;overflow:hidden;padding:80px 0}
+  .realm-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 8s ease;transform:scale(1.05)}
+  .realm.visible .realm-bg{transform:scale(1.12)}
+  .realm-overlay{position:absolute;inset:0}
+  .realm-content{position:relative;z-index:3;max-width:1200px;margin:0 auto;padding:0 48px;width:100%}
+  .realm-inner{max-width:620px;opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
+  .realm.visible .realm-inner{opacity:1;transform:translateY(0)}
+  .realm.right .realm-inner{margin-left:auto}
+  .realm-element{display:inline-flex;align-items:center;gap:12px;font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.25em;text-transform:uppercase;margin-bottom:18px;padding:8px 20px;border:1px solid;border-radius:30px;background:rgba(10,8,16,0.5)}
+  .realm-name{font-family:'Cinzel',serif;font-weight:800;font-size:clamp(2.4rem,5vw,3.8rem);color:var(--oro-chiaro);line-height:1.05;margin-bottom:6px;text-shadow:0 4px 30px rgba(0,0,0,0.8)}
+  .realm-sub{font-family:'Cinzel',serif;font-size:1.3rem;letter-spacing:.1em;margin-bottom:24px}
+  .realm-desc{font-size:1.45rem;color:var(--testo);margin-bottom:22px;text-shadow:0 2px 14px rgba(0,0,0,0.9)}
+  .realm-info{display:grid;gap:14px;margin-top:26px}
+  .realm-info .info{background:rgba(10,8,16,0.6);backdrop-filter:blur(4px);border-left:3px solid;padding:14px 20px;border-radius:0 6px 6px 0}
+  .realm-info .info .lbl{font-family:'Cinzel',serif;font-size:.92rem;letter-spacing:.18em;text-transform:uppercase;color:var(--oro);margin-bottom:3px}
+  .realm-info .info .val{font-size:1.3rem;color:var(--testo)}
+  .realm-info .info.corrupt{border-color:var(--corruzione)}
+  .realm-info .info.corrupt .lbl{color:var(--corruzione)}
 
-  /* comparatore slider */
-  .realm-compare{position:relative;width:100%;aspect-ratio:16/10;border-radius:10px;overflow:hidden;border:1px solid var(--bordo);box-shadow:0 30px 70px rgba(0,0,0,0.6),0 0 50px rgba(230,192,104,0.08);user-select:none;cursor:ew-resize}
-  .cmp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
-  .cmp-corr{z-index:1}
-  .cmp-sana-wrap{position:absolute;inset:0;z-index:2;width:50%;overflow:hidden;will-change:width}
-  .cmp-sana{position:absolute;inset:0;height:100%}
-  .cmp-sana img{height:100%;width:auto;max-width:none;object-fit:cover}
-  /* etichette */
-  .cmp-tag{position:absolute;top:14px;z-index:5;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:6px 12px;border-radius:30px;background:rgba(10,8,16,0.6);backdrop-filter:blur(4px);border:1px solid var(--bordo)}
-  .cmp-tag.sana{left:14px;color:var(--oro-chiaro)}
-  .cmp-tag.corr{right:14px;color:var(--viola)}
-  /* maniglia */
-  .cmp-handle{position:absolute;top:0;bottom:0;z-index:6;width:2px;background:var(--oro-chiaro);left:50%;transform:translateX(-50%);box-shadow:0 0 16px rgba(255,206,77,.6);pointer-events:none}
-  .cmp-handle::after{content:'⟺';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:var(--oro);color:var(--nero);display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 4px 18px rgba(0,0,0,.5)}
-
-  /* info */
-  .realm-el{display:inline-flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;padding:8px 16px;border-radius:30px;margin-bottom:18px;border:1px solid}
-  .realm-el .dot{width:9px;height:9px;border-radius:50%}
-  .realm-name{font-family:'Cinzel',serif;font-weight:800;font-size:clamp(1.8rem,3.5vw,2.7rem);color:var(--oro-chiaro);line-height:1.06;letter-spacing:.02em;margin-bottom:8px}
-  .realm-sub{font-style:italic;font-size:1.15rem;color:var(--testo-soft);margin-bottom:18px}
-  .realm-desc{font-size:1.12rem;color:var(--testo);margin-bottom:22px}
-  .realm-desc .hl{color:var(--fiamma);font-style:italic}
-  .realm-meta{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bordo);border:1px solid var(--bordo);border-radius:8px;overflow:hidden}
-  .realm-meta div{background:rgba(10,8,16,0.7);padding:13px 18px}
-  .realm-meta .m-label{font-family:'Cinzel',serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-scuro);margin-bottom:5px}
-  .realm-meta .m-val{font-family:'Cinzel',serif;font-size:1.02rem;letter-spacing:.02em;color:var(--oro-chiaro)}
-  .realm-meta .m-val.corr{color:var(--viola)}
-  .realm-boss{margin-top:14px;display:flex;align-items:center;gap:10px;font-size:1rem;color:var(--testo-soft)}
-  .realm-boss .sw{color:var(--oro);font-size:1.12rem}
-
-  /* colori elementali */
-  .el-acqua .realm-el{color:#7fe3ef;border-color:rgba(94,209,255,.5)} .el-acqua .dot{background:#5ad1ff;box-shadow:0 0 12px #5ad1ff}
-  .el-fuoco .realm-el{color:#ffb066;border-color:rgba(255,123,46,.5)} .el-fuoco .dot{background:#ff7b2e;box-shadow:0 0 12px #ff7b2e}
-  .el-terra .realm-el{color:#a8d98a;border-color:rgba(123,189,79,.5)} .el-terra .dot{background:#7bbd4f;box-shadow:0 0 12px #7bbd4f}
-  .el-aria  .realm-el{color:#dce7ff;border-color:rgba(191,212,255,.5)} .el-aria .dot{background:#cfe0ff;box-shadow:0 0 12px #cfe0ff}
-
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-
-  /* sinergie */
-  .map{max-width:1180px;margin:0 auto;padding:100px 32px}
-  .map h2{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--oro-chiaro);text-align:center;margin-bottom:14px}
-  .map .map-note{text-align:center;color:var(--testo-soft);font-style:italic;margin-bottom:50px}
-  .syn-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:760px;margin:0 auto}
-  .syn{border:1px solid var(--bordo);border-radius:8px;padding:26px 28px;background:rgba(13,11,20,0.6);text-align:center}
-  .syn .syn-form{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.1em;color:var(--testo-soft);margin-bottom:8px}
-  .syn .syn-res{font-family:'Cinzel',serif;font-size:1.3rem;color:var(--fiamma);letter-spacing:.03em}
+  /* temi colore per regno */
+  .realm.acqua .realm-element{color:var(--acqua);border-color:var(--acqua)}
+  .realm.acqua .realm-sub{color:var(--acqua)}
+  .realm.acqua .realm-info .info:not(.corrupt){border-color:var(--acqua)}
+  .realm.acqua .realm-overlay{background:linear-gradient(100deg,rgba(8,20,30,0.92),rgba(8,20,30,0.5) 55%,rgba(63,184,212,0.12))}
+  .realm.fuoco .realm-element{color:var(--fuoco);border-color:var(--fuoco)}
+  .realm.fuoco .realm-sub{color:var(--fuoco)}
+  .realm.fuoco .realm-info .info:not(.corrupt){border-color:var(--fuoco)}
+  .realm.fuoco .realm-overlay{background:linear-gradient(260deg,rgba(28,12,8,0.92),rgba(28,12,8,0.5) 55%,rgba(245,120,60,0.12))}
+  .realm.terra .realm-element{color:var(--terra);border-color:var(--terra)}
+  .realm.terra .realm-sub{color:var(--terra)}
+  .realm.terra .realm-info .info:not(.corrupt){border-color:var(--terra)}
+  .realm.terra .realm-overlay{background:linear-gradient(100deg,rgba(10,20,10,0.92),rgba(10,20,10,0.5) 55%,rgba(110,170,80,0.12))}
+  .realm.aria .realm-element{color:var(--aria);border-color:var(--aria)}
+  .realm.aria .realm-sub{color:var(--aria)}
+  .realm.aria .realm-info .info:not(.corrupt){border-color:var(--aria)}
+  .realm.aria .realm-overlay{background:linear-gradient(260deg,rgba(14,18,26,0.92),rgba(14,18,26,0.5) 55%,rgba(200,220,240,0.12))}
 
   footer{position:relative;z-index:2;border-top:1px solid var(--bordo);padding:50px 24px 40px;text-align:center;background:rgba(10,8,16,0.7)}
   footer .f-title{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.2em;color:var(--oro);margin-bottom:12px}
-  footer p{font-size:.95rem;color:var(--testo-soft);margin:4px 0}
-  footer .placeholder{color:var(--oro-scuro);font-style:italic;opacity:.7}
+  footer p{font-size:1.3rem;color:var(--testo-soft);margin:4px 0}
 
   @media(max-width:880px){
     header{padding:14px 20px}
     nav{position:fixed;top:0;right:-100%;width:78%;max-width:340px;height:100vh;flex-direction:column;align-items:flex-start;gap:0;background:rgba(10,9,16,0.99);backdrop-filter:blur(16px);padding:90px 30px 30px;transition:right .4s ease;border-left:1px solid var(--bordo);overflow-y:auto}
     nav.open{right:0}
-    nav a,.dropdown-btn{width:100%;padding:14px 0;font-size:.9rem}
+    nav a,.dropdown-btn{width:100%;padding:14px 0;font-size:.95rem}
     .dropdown{width:100%}
     .dropdown-menu{position:static;transform:none;opacity:1;visibility:visible;background:rgba(255,255,255,0.02);border:none;box-shadow:none;max-height:0;overflow:hidden;transition:max-height .3s;padding:0}
     .dropdown.open-mob .dropdown-menu{max-height:300px;padding:4px 0}
     .lang{margin:20px 0 0 0}
     .burger{display:flex;z-index:101}
-    .realm{grid-template-columns:1fr;gap:26px}
-    .realm.reverse .realm-info,.realm.reverse .realm-compare{order:0}
-    .syn-grid{grid-template-columns:1fr}
+    .realm-content{padding:0 26px}
+    .realm.right .realm-inner{margin-left:0}
+    .realm-overlay{background:rgba(10,8,16,0.8)!important}
   }
-  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}.realm-bg{transition:none}}
 </style>
 </head>
 <body>
 
 <header id="header">
-  <a href="index.html" class="brand">ELYSTRIA</a>
+  <a href="index.html" class="brand"><img src="assets/logo.png" alt="Elystria"></a>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   <nav id="nav">
     <a href="index.html" data-it="Home" data-en="Home">Home</a>
@@ -141,7 +125,7 @@
     <a href="progetto.html" data-it="Il Progetto" data-en="The Project">Il Progetto</a>
     <a href="storia.html" data-it="Storia" data-en="Story">Storia</a>
     <div class="dropdown" id="dropGioco">
-      <button class="dropdown-btn active" data-it="Il Gioco ▾" data-en="The Game ▾">Il Gioco ▾</button>
+      <button class="dropdown-btn active-page" data-it="Il Gioco ▾" data-en="The Game ▾">Il Gioco ▾</button>
       <div class="dropdown-menu">
         <a href="personaggi.html" data-it="Personaggi" data-en="Characters">Personaggi</a>
         <a href="regni.html" class="active" data-it="I Regni" data-en="The Realms">I Regni</a>
@@ -158,118 +142,93 @@
 </header>
 
 <section class="page-hero">
-  <div class="page-hero-bg" style="background-image:url(assets/img/reg_aria_corr.jpg)"></div>
+  <div class="page-hero-bg" style="background-image:url(assets/img/amb_vulcano.jpg)"></div>
   <div class="page-hero-inner">
-    <div class="page-kicker" data-it="Quattro elementi, quattro prigioni" data-en="Four elements, four prisons">Quattro elementi, quattro prigioni</div>
+    <div class="page-kicker" data-it="Quattro mondi, quattro prove" data-en="Four worlds, four trials">Quattro mondi, quattro prove</div>
     <h1 class="page-title" data-it="I Regni" data-en="The Realms">I Regni</h1>
-    <p class="page-subtitle" data-it="Le terre corrotte dove dormono gli Dei caduti" data-en="The corrupted lands where the fallen Gods sleep">Le terre corrotte dove dormono gli Dei caduti</p>
+    <p class="page-subtitle" data-it="Le terre corrotte dove gli Dei attendono la liberazione" data-en="The corrupted lands where the Gods await liberation">Le terre corrotte dove gli Dei attendono la liberazione</p>
   </div>
 </section>
 
-<section class="intro reveal">
-  <p data-it="Ogni frammento della Fiamma è legato a un elemento e a un Dio. Un tempo erano terre di pura bellezza; quando Zython li corruppe, divennero arene mortali. Theron dovrà attraversarle tutte." data-en="Each shard of the Flame is bound to an element and a God. Once they were lands of pure beauty; when Zython corrupted them, they became deadly arenas. Theron must cross them all.">Ogni frammento della Fiamma è legato a un elemento e a un Dio. Un tempo erano terre di pura bellezza; quando Zython li corruppe, divennero arene mortali. Theron dovrà attraversarle tutte.</p>
-  <div class="hint" data-it="↔ Trascina il cursore per vedere la corruzione" data-en="↔ Drag the slider to reveal the corruption">↔ Trascina il cursore per vedere la corruzione</div>
-</section>
-
-<div class="realms">
-
-  <!-- ACQUA -->
-  <section class="realm el-acqua reveal">
-    <div class="realm-info">
-      <span class="realm-el"><span class="dot"></span><span data-it="Elemento · Acqua" data-en="Element · Water">Elemento · Acqua</span></span>
-      <h2 class="realm-name" data-it="Tempio Sommerso" data-en="Sunken Temple">Tempio Sommerso</h2>
-      <div class="realm-sub" data-it="Le rovine inghiottite dagli abissi" data-en="Ruins swallowed by the deep">Le rovine inghiottite dagli abissi</div>
-      <p class="realm-desc" data-it="Un tempo giardino sottomarino fiorito e luminoso, oggi un santuario sprofondato nell'oscurità degli abissi. Qui regna <span class='hl'>Adoria</span>, ridotta a una creatura delle profondità." data-en="Once a blooming, luminous underwater garden, now a sanctuary sunk into the darkness of the deep. Here reigns <span class='hl'>Adoria</span>, reduced to a creature of the depths.">Un tempo giardino sottomarino fiorito e luminoso, oggi un santuario sprofondato nell'oscurità degli abissi. Qui regna <span class="hl">Adoria</span>, ridotta a una creatura delle profondità.</p>
-      <div class="realm-meta">
-        <div><div class="m-label" data-it="Dio custode" data-en="Guardian God">Dio custode</div><div class="m-val" data-it="Adoria" data-en="Adoria">Adoria</div></div>
-        <div><div class="m-label" data-it="Forma corrotta" data-en="Corrupted form">Forma corrotta</div><div class="m-val corr" data-it="Necrosirena" data-en="Necrosiren">Necrosirena</div></div>
-      </div>
-      <div class="realm-boss"><span class="sw">⚔</span><span data-it="Sinergia: Acqua + Vento = Tempesta Cinetica" data-en="Synergy: Water + Wind = Kinetic Storm">Sinergia: Acqua + Vento = Tempesta Cinetica</span></div>
-    </div>
-    <div class="realm-compare" data-sana="assets/img/reg_acqua_sana.jpg" data-corr="assets/img/reg_acqua_corr.jpg">
-      <span class="cmp-tag sana" data-it="Sana" data-en="Pure">Sana</span>
-      <span class="cmp-tag corr" data-it="Corrotta" data-en="Corrupted">Corrotta</span>
-    </div>
-  </section>
-
-  <!-- FUOCO -->
-  <section class="realm el-fuoco reverse reveal">
-    <div class="realm-info">
-      <span class="realm-el"><span class="dot"></span><span data-it="Elemento · Fuoco" data-en="Element · Fire">Elemento · Fuoco</span></span>
-      <h2 class="realm-name" data-it="Vulcano del Cuore Fuso" data-en="Volcano of the Molten Heart">Vulcano del Cuore Fuso</h2>
-      <div class="realm-sub" data-it="La fucina incandescente del mondo" data-en="The world's incandescent forge">La fucina incandescente del mondo</div>
-      <p class="realm-desc" data-it="Un santuario di calore vitale e luce dorata, trasformato in caverne di lava infernale dove ogni passo è una prova. Nel suo cuore si erge <span class='hl'>Firyon</span>, colosso di pietra e fuoco." data-en="A sanctuary of vital warmth and golden light, turned into caverns of infernal lava where every step is a trial. At its heart stands <span class='hl'>Firyon</span>, a colossus of stone and fire.">Un santuario di calore vitale e luce dorata, trasformato in caverne di lava infernale dove ogni passo è una prova. Nel suo cuore si erge <span class="hl">Firyon</span>, colosso di pietra e fuoco.</p>
-      <div class="realm-meta">
-        <div><div class="m-label" data-it="Dio custode" data-en="Guardian God">Dio custode</div><div class="m-val" data-it="Firyon" data-en="Firyon">Firyon</div></div>
-        <div><div class="m-label" data-it="Forma corrotta" data-en="Corrupted form">Forma corrotta</div><div class="m-val corr" data-it="Colosso di Lava" data-en="Lava Colossus">Colosso di Lava</div></div>
-      </div>
-      <div class="realm-boss"><span class="sw">⚔</span><span data-it="Sinergia: Terra + Fuoco = Eruzione Vulcanica" data-en="Synergy: Earth + Fire = Volcanic Eruption">Sinergia: Terra + Fuoco = Eruzione Vulcanica</span></div>
-    </div>
-    <div class="realm-compare" data-sana="assets/img/reg_fuoco_sana.jpg" data-corr="assets/img/reg_fuoco_corr.jpg">
-      <span class="cmp-tag sana" data-it="Sana" data-en="Pure">Sana</span>
-      <span class="cmp-tag corr" data-it="Corrotta" data-en="Corrupted">Corrotta</span>
-    </div>
-  </section>
-
-  <!-- TERRA -->
-  <section class="realm el-terra reveal">
-    <div class="realm-info">
-      <span class="realm-el"><span class="dot"></span><span data-it="Elemento · Terra" data-en="Element · Earth">Elemento · Terra</span></span>
-      <h2 class="realm-name" data-it="Foresta Distorta" data-en="Twisted Forest">Foresta Distorta</h2>
-      <div class="realm-sub" data-it="Dove le radici imprigionano la luce" data-en="Where roots imprison the light">Dove le radici imprigionano la luce</div>
-      <p class="realm-desc" data-it="Una selva un tempo rigogliosa e in fiore, piegata dalla corruzione in un intrico di alberi contorti e radici soffocanti. Al suo centro veglia <span class='hl'>Gairok</span>, fuso con la foresta stessa." data-en="A once-lush, blooming forest bent by corruption into a tangle of twisted trees and choking roots. At its center watches <span class='hl'>Gairok</span>, merged with the forest itself.">Una selva un tempo rigogliosa e in fiore, piegata dalla corruzione in un intrico di alberi contorti e radici soffocanti. Al suo centro veglia <span class="hl">Gairok</span>, fuso con la foresta stessa.</p>
-      <div class="realm-meta">
-        <div><div class="m-label" data-it="Dio custode" data-en="Guardian God">Dio custode</div><div class="m-val" data-it="Gairok" data-en="Gairok">Gairok</div></div>
-        <div><div class="m-label" data-it="Forma corrotta" data-en="Corrupted form">Forma corrotta</div><div class="m-val corr" data-it="Mostro-Albero" data-en="Tree-Monster">Mostro-Albero</div></div>
-      </div>
-      <div class="realm-boss"><span class="sw">⚔</span><span data-it="Sinergia: Terra + Fuoco = Eruzione Vulcanica" data-en="Synergy: Earth + Fire = Volcanic Eruption">Sinergia: Terra + Fuoco = Eruzione Vulcanica</span></div>
-    </div>
-    <div class="realm-compare" data-sana="assets/img/reg_terra_sana.jpg" data-corr="assets/img/reg_terra_corr.jpg">
-      <span class="cmp-tag sana" data-it="Sana" data-en="Pure">Sana</span>
-      <span class="cmp-tag corr" data-it="Corrotta" data-en="Corrupted">Corrotta</span>
-    </div>
-  </section>
-
-  <!-- ARIA -->
-  <section class="realm el-aria reverse reveal">
-    <div class="realm-info">
-      <span class="realm-el"><span class="dot"></span><span data-it="Elemento · Aria" data-en="Element · Air">Elemento · Aria</span></span>
-      <h2 class="realm-name" data-it="Santuario Sospeso" data-en="Suspended Sanctuary">Santuario Sospeso</h2>
-      <div class="realm-sub" data-it="Il tempio che galleggia tra le nubi" data-en="The temple floating among the clouds">Il tempio che galleggia tra le nubi</div>
-      <p class="realm-desc" data-it="Colonne di marmo che svettano verso un cielo luminoso, oggi frammenti cupi sospesi nel vuoto tra venti impetuosi. Qui dimora <span class='hl'>Neraya</span>, ridotta a uno spirito eterico." data-en="Marble columns soaring toward a luminous sky, now gloomy fragments suspended in the void amid raging winds. Here dwells <span class='hl'>Neraya</span>, reduced to an etheric spirit.">Colonne di marmo che svettano verso un cielo luminoso, oggi frammenti cupi sospesi nel vuoto tra venti impetuosi. Qui dimora <span class="hl">Neraya</span>, ridotta a uno spirito eterico.</p>
-      <div class="realm-meta">
-        <div><div class="m-label" data-it="Dio custode" data-en="Guardian God">Dio custode</div><div class="m-val" data-it="Neraya" data-en="Neraya">Neraya</div></div>
-        <div><div class="m-label" data-it="Forma corrotta" data-en="Corrupted form">Forma corrotta</div><div class="m-val corr" data-it="Spirito Eterico" data-en="Etheric Spirit">Spirito Eterico</div></div>
-      </div>
-      <div class="realm-boss"><span class="sw">⚔</span><span data-it="Sinergia: Acqua + Vento = Tempesta Cinetica" data-en="Synergy: Water + Wind = Kinetic Storm">Sinergia: Acqua + Vento = Tempesta Cinetica</span></div>
-    </div>
-    <div class="realm-compare" data-sana="assets/img/reg_aria_sana.jpg" data-corr="assets/img/reg_aria_corr.jpg">
-      <span class="cmp-tag sana" data-it="Sana" data-en="Pure">Sana</span>
-      <span class="cmp-tag corr" data-it="Corrotta" data-en="Corrupted">Corrotta</span>
-    </div>
-  </section>
-
+<div class="intro-realms">
+  <p data-it="Ogni Dio caduto è prigioniero del proprio regno, trasformato dalla corruzione di Zython in un'arena ostile. Theron dovrà attraversarli tutti, sconfiggere la forma corrotta di ciascun Dio e liberarne l'essenza." data-en="Each fallen God is a prisoner of its own realm, transformed by Zython's corruption into a hostile arena. Theron must cross them all, defeat the corrupted form of each God and free its essence.">Ogni Dio caduto è prigioniero del proprio regno, trasformato dalla corruzione di Zython in un'arena ostile. Theron dovrà attraversarli tutti, sconfiggere la forma corrotta di ciascun Dio e liberarne l'essenza.</p>
 </div>
 
-<!-- SINERGIE -->
-<section class="map reveal">
-  <h2 data-it="Le Sinergie Elementali" data-en="Elemental Synergies">Le Sinergie Elementali</h2>
-  <p class="map-note" data-it="Combinando i poteri degli Dei liberati, Theron sblocca nuove forze" data-en="By combining the powers of the freed Gods, Theron unlocks new forces">Combinando i poteri degli Dei liberati, Theron sblocca nuove forze</p>
-  <div class="syn-grid">
-    <div class="syn reveal">
-      <div class="syn-form" data-it="Acqua + Vento" data-en="Water + Wind">Acqua + Vento</div>
-      <div class="syn-res" data-it="Tempesta Cinetica" data-en="Kinetic Storm">Tempesta Cinetica</div>
+<!-- ACQUA -->
+<section class="realm acqua">
+  <div class="realm-bg" style="background-image:url(assets/img/amb_tempio.jpg)"></div>
+  <div class="realm-overlay"></div>
+  <div class="realm-content">
+    <div class="realm-inner">
+      <span class="realm-element">≈ <span data-it="Acqua" data-en="Water">Acqua</span></span>
+      <h2 class="realm-name" data-it="Il Tempio Sommerso" data-en="The Sunken Temple">Il Tempio Sommerso</h2>
+      <div class="realm-sub" data-it="Regno di Adoria, Dea dell'Acqua" data-en="Realm of Adoria, Goddess of Water">Regno di Adoria, Dea dell'Acqua</div>
+      <p class="realm-desc" data-it="Antiche sale allagate dove la luce filtra azzurra tra le colonne. Un tempo cuore pulsante dell'armonia acquatica, oggi un labirinto sommerso di silenzi e correnti insidiose." data-en="Ancient flooded halls where blue light filters through the columns. Once the beating heart of aquatic harmony, today a sunken maze of silence and treacherous currents.">Antiche sale allagate dove la luce filtra azzurra tra le colonne. Un tempo cuore pulsante dell'armonia acquatica, oggi un labirinto sommerso di silenzi e correnti insidiose.</p>
+      <div class="realm-info">
+        <div class="info corrupt"><div class="lbl" data-it="Dio corrotto" data-en="Corrupted God">Dio corrotto</div><div class="val" data-it="La Necrosirena — Adoria piegata in un essere abissale e ostile" data-en="The Necrosiren — Adoria twisted into an abyssal, hostile being">La Necrosirena — Adoria piegata in un essere abissale e ostile</div></div>
+        <div class="info"><div class="lbl" data-it="La prova" data-en="The trial">La prova</div><div class="val" data-it="Orientarsi tra le correnti e le sale allagate fino al cuore del Tempio" data-en="Navigate the currents and flooded halls to the heart of the Temple">Orientarsi tra le correnti e le sale allagate fino al cuore del Tempio</div></div>
+      </div>
     </div>
-    <div class="syn reveal">
-      <div class="syn-form" data-it="Terra + Fuoco" data-en="Earth + Fire">Terra + Fuoco</div>
-      <div class="syn-res" data-it="Eruzione Vulcanica" data-en="Volcanic Eruption">Eruzione Vulcanica</div>
+  </div>
+</section>
+
+<!-- FUOCO -->
+<section class="realm fuoco right">
+  <div class="realm-bg" style="background-image:url(assets/img/amb_vulcano.jpg)"></div>
+  <div class="realm-overlay"></div>
+  <div class="realm-content">
+    <div class="realm-inner">
+      <span class="realm-element">△ <span data-it="Fuoco" data-en="Fire">Fuoco</span></span>
+      <h2 class="realm-name" data-it="Il Vulcano del Cuore Fuso" data-en="The Volcano of the Molten Heart">Il Vulcano del Cuore Fuso</h2>
+      <div class="realm-sub" data-it="Regno di Firyon, Dio del Fuoco" data-en="Realm of Firyon, God of Fire">Regno di Firyon, Dio del Fuoco</div>
+      <p class="realm-desc" data-it="Caverne incandescenti e fiumi di lava pulsano nel ventre della montagna. Qui il fuoco un tempo forgiava e creava: ora divora soltanto." data-en="Incandescent caverns and rivers of lava pulse in the belly of the mountain. Here fire once forged and created: now it only devours.">Caverne incandescenti e fiumi di lava pulsano nel ventre della montagna. Qui il fuoco un tempo forgiava e creava: ora divora soltanto.</p>
+      <div class="realm-info">
+        <div class="info corrupt"><div class="lbl" data-it="Dio corrotto" data-en="Corrupted God">Dio corrotto</div><div class="val" data-it="Il Colosso di lava — Firyon mutato in una furia incandescente" data-en="The Lava Colossus — Firyon mutated into an incandescent fury">Il Colosso di lava — Firyon mutato in una furia incandescente</div></div>
+        <div class="info"><div class="lbl" data-it="La prova" data-en="The trial">La prova</div><div class="val" data-it="Resistere al calore e schivare le colate mentre si affronta il Colosso" data-en="Withstand the heat and dodge the lava flows while facing the Colossus">Resistere al calore e schivare le colate mentre si affronta il Colosso</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TERRA -->
+<section class="realm terra">
+  <div class="realm-bg" style="background-image:url(assets/img/amb_foresta.jpg)"></div>
+  <div class="realm-overlay"></div>
+  <div class="realm-content">
+    <div class="realm-inner">
+      <span class="realm-element">⬡ <span data-it="Terra" data-en="Earth">Terra</span></span>
+      <h2 class="realm-name" data-it="La Foresta Distorta" data-en="The Distorted Forest">La Foresta Distorta</h2>
+      <div class="realm-sub" data-it="Regno di Gairok, Dio della Terra" data-en="Realm of Gairok, God of Earth">Regno di Gairok, Dio della Terra</div>
+      <p class="realm-desc" data-it="Alberi millenari contorti in forme innaturali, radici che si muovono nell'ombra. La corruzione ha trasformato un bosco vivo in un labirinto vegetale che inghiotte chi vi entra." data-en="Ancient trees twisted into unnatural shapes, roots that move in the shadows. Corruption has turned a living wood into a vegetal maze that swallows those who enter.">Alberi millenari contorti in forme innaturali, radici che si muovono nell'ombra. La corruzione ha trasformato un bosco vivo in un labirinto vegetale che inghiotte chi vi entra.</p>
+      <div class="realm-info">
+        <div class="info corrupt"><div class="lbl" data-it="Dio corrotto" data-en="Corrupted God">Dio corrotto</div><div class="val" data-it="Il Mostro-Albero — Gairok ridotto a un groviglio ostile di radici" data-en="The Tree-Monster — Gairok reduced to a hostile tangle of roots">Il Mostro-Albero — Gairok ridotto a un groviglio ostile di radici</div></div>
+        <div class="info"><div class="lbl" data-it="La prova" data-en="The trial">La prova</div><div class="val" data-it="Trovare la via nel labirinto vivente mentre la foresta reagisce" data-en="Find the path in the living maze as the forest reacts">Trovare la via nel labirinto vivente mentre la foresta reagisce</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARIA -->
+<section class="realm aria right">
+  <div class="realm-bg" style="background-image:url(assets/img/amb_santuario.jpg)"></div>
+  <div class="realm-overlay"></div>
+  <div class="realm-content">
+    <div class="realm-inner">
+      <span class="realm-element">≋ <span data-it="Aria" data-en="Air">Aria</span></span>
+      <h2 class="realm-name" data-it="Il Santuario Sospeso" data-en="The Suspended Sanctuary">Il Santuario Sospeso</h2>
+      <div class="realm-sub" data-it="Regno di Neraya, Dea dell'Aria" data-en="Realm of Neraya, Goddess of Air">Regno di Neraya, Dea dell'Aria</div>
+      <p class="realm-desc" data-it="Piattaforme fluttuanti sospese tra le nuvole, collegate da ponti di luce e vento. Un luogo di vertigine e leggerezza, dove un passo falso significa il vuoto." data-en="Floating platforms suspended among the clouds, linked by bridges of light and wind. A place of vertigo and lightness, where one wrong step means the void.">Piattaforme fluttuanti sospese tra le nuvole, collegate da ponti di luce e vento. Un luogo di vertigine e leggerezza, dove un passo falso significa il vuoto.</p>
+      <div class="realm-info">
+        <div class="info corrupt"><div class="lbl" data-it="Dio corrotto" data-en="Corrupted God">Dio corrotto</div><div class="val" data-it="Lo Spirito Eterico — Neraya dissolta in un vortice instabile di venti" data-en="The Etheric Spirit — Neraya dissolved into an unstable vortex of winds">Lo Spirito Eterico — Neraya dissolta in un vortice instabile di venti</div></div>
+        <div class="info"><div class="lbl" data-it="La prova" data-en="The trial">La prova</div><div class="val" data-it="Saltare tra le piattaforme sfidando il vento e le illusioni" data-en="Leap between platforms defying the wind and illusions">Saltare tra le piattaforme sfidando il vento e le illusioni</div></div>
+      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="f-title">ELYSTRIA — La Fiamma Primordiale</div>
-  <p class="placeholder" data-it="Nome scuola · Classe · Anno scolastico (da inserire)" data-en="School name · Class · School year (to be added)">Nome scuola · Classe · Anno scolastico (da inserire)</p>
+  <p data-it="CFP G. Zanardelli — Anno scolastico 2025/2026" data-en="CFP G. Zanardelli — School year 2025/2026">CFP G. Zanardelli — Anno scolastico 2025/2026</p>
   <p data-it="Progetto realizzato da Ilaria, Martina e Jolanda" data-en="Project created by Ilaria, Martina and Jolanda">Progetto realizzato da Ilaria, Martina e Jolanda</p>
 </footer>
 
@@ -285,38 +244,8 @@
   const burger=document.getElementById('burger'),nav=document.getElementById('nav');
   burger.addEventListener('click',()=>nav.classList.toggle('open'));
   document.getElementById('dropGioco').querySelector('.dropdown-btn').addEventListener('click',e=>{if(window.innerWidth<=880){e.preventDefault();document.getElementById('dropGioco').classList.toggle('open-mob')}});
-
-  /* COMPARATORE sana/corrotta */
-  document.querySelectorAll('.realm-compare').forEach(box=>{
-    const sana=box.getAttribute('data-sana'), corr=box.getAttribute('data-corr');
-    const ic=document.createElement('img'); ic.className='cmp-img cmp-corr'; ic.src=corr; ic.alt='corrotta'; box.appendChild(ic);
-    const wrap=document.createElement('div'); wrap.className='cmp-sana-wrap';
-    const inner=document.createElement('div'); inner.className='cmp-sana';
-    const is=document.createElement('img'); is.src=sana; is.alt='sana';
-    inner.appendChild(is); wrap.appendChild(inner); box.appendChild(wrap);
-    function sizeInner(){ const w=box.clientWidth; inner.style.width=w+'px'; is.style.width=w+'px'; }
-    sizeInner(); window.addEventListener('resize',sizeInner);
-    const handle=document.createElement('div'); handle.className='cmp-handle'; box.appendChild(handle);
-    let pos=50;
-    function setPos(p){ pos=Math.max(0,Math.min(100,p)); wrap.style.width=pos+'%'; handle.style.left=pos+'%'; }
-    setPos(50);
-    function fromEvent(e){
-      const rect=box.getBoundingClientRect();
-      const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-      setPos(x/rect.width*100);
-    }
-    let dragging=false;
-    box.addEventListener('mousedown',e=>{dragging=true;fromEvent(e);});
-    window.addEventListener('mousemove',e=>{if(dragging)fromEvent(e);});
-    window.addEventListener('mouseup',()=>dragging=false);
-    box.addEventListener('touchstart',e=>{dragging=true;fromEvent(e);},{passive:true});
-    window.addEventListener('touchmove',e=>{if(dragging)fromEvent(e);},{passive:true});
-    window.addEventListener('touchend',()=>dragging=false);
-  });
-
-  /* reveal */
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.3});
+  document.querySelectorAll('.realm').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>

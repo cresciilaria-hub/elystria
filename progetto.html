@@ -11,19 +11,19 @@
   :root{
     --nero:#0a0810;--oro:#e6c068;--oro-chiaro:#f8e4b0;--oro-scuro:#9c7a32;
     --fiamma:#ffce4d;--testo:#f0ead8;--testo-soft:#c4baa4;--bordo:rgba(230,192,104,0.25);
-    --viola:#8b5cf6;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{background:var(--nero);color:var(--testo);font-family:'Cormorant Garamond',serif;font-size:18px;overflow-x:hidden;line-height:1.6}
+  body{background:var(--nero);color:var(--testo);font-family:'Cormorant Garamond',serif;font-size:24px;overflow-x:hidden;line-height:1.6}
 
-  /* MENU */
   header{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 42px;transition:all .4s ease}
   header.scrolled{background:rgba(10,8,16,0.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--bordo);padding:12px 42px}
-  .brand{font-family:'Cinzel',serif;font-weight:700;font-size:1.5rem;letter-spacing:.18em;color:var(--oro-chiaro);text-decoration:none;text-shadow:0 0 18px rgba(230,192,104,0.4)}
+  .brand{display:flex;align-items:center;text-decoration:none}
+  .brand img{height:46px;width:auto;display:block;filter:drop-shadow(0 2px 12px rgba(230,192,104,0.35));transition:height .4s ease}
+  header.scrolled .brand img{height:38px}
   nav{display:flex;align-items:center;gap:6px}
-  nav a,.dropdown-btn{font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--testo-soft);text-decoration:none;padding:10px 14px;background:none;border:none;cursor:pointer;position:relative;transition:color .3s}
-  nav a:hover,.dropdown-btn:hover,nav a.active,.dropdown-btn.active{color:var(--oro-chiaro)}
+  nav a,.dropdown-btn{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;color:var(--testo-soft);text-decoration:none;padding:10px 14px;background:none;border:none;cursor:pointer;position:relative;transition:color .3s}
+  nav a:hover,.dropdown-btn:hover,nav a.active{color:var(--oro-chiaro)}
   nav a::after{content:'';position:absolute;left:14px;right:14px;bottom:4px;height:1px;background:var(--oro);transform:scaleX(0);transition:transform .3s}
   nav a:hover::after,nav a.active::after{transform:scaleX(1)}
   .dropdown{position:relative}
@@ -33,72 +33,60 @@
   .dropdown-menu a::after{display:none}
   .dropdown-menu a:hover{background:rgba(230,192,104,0.08)}
   .lang{display:flex;gap:2px;margin-left:14px;border:1px solid var(--bordo);border-radius:3px;overflow:hidden}
-  .lang button{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.1em;background:none;border:none;color:var(--testo-soft);padding:7px 11px;cursor:pointer;transition:all .25s}
+  .lang button{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.1em;background:none;border:none;color:var(--testo-soft);padding:7px 11px;cursor:pointer;transition:all .25s}
   .lang button.active{background:var(--oro);color:var(--nero);font-weight:700}
   .burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
   .burger span{width:26px;height:2px;background:var(--oro-chiaro);transition:.3s}
 
-  /* HERO */
-  .page-hero{position:relative;height:58vh;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
-  .page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;filter:brightness(.45) saturate(1.05)}
-  .page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%, transparent, rgba(10,8,16,0.85) 75%),linear-gradient(180deg,rgba(10,8,16,0.7),transparent 40%,rgba(10,8,16,0.95))}
+  .page-hero{position:relative;height:56vh;min-height:420px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+  .page-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 28%;filter:brightness(.5) saturate(1.05)}
+  .page-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%, transparent, rgba(10,8,16,0.85) 75%),linear-gradient(180deg,rgba(10,8,16,0.7),transparent 40%,rgba(10,8,16,0.97))}
   .page-hero-inner{position:relative;z-index:2;padding:0 24px}
-  .page-kicker{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.5em;text-transform:uppercase;color:var(--oro-chiaro);margin-bottom:18px;opacity:0;animation:fadeUp 1s ease .2s forwards}
+  .page-kicker{font-family:'Cinzel',serif;font-size:1.05rem;letter-spacing:.45em;text-transform:uppercase;color:var(--oro-chiaro);margin-bottom:18px;opacity:0;animation:fadeUp 1s ease .2s forwards}
   .page-title{font-family:'Cinzel',serif;font-weight:800;font-size:clamp(2.6rem,7vw,5rem);color:var(--oro-chiaro);letter-spacing:.04em;text-shadow:0 0 50px rgba(255,206,77,0.4);opacity:0;animation:fadeUp 1s ease .4s forwards}
-  .page-subtitle{font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--testo);margin-top:18px;opacity:0;animation:fadeUp 1s ease .6s forwards}
+  .page-subtitle{font-style:italic;font-size:clamp(1.5rem,3vw,2.1rem);color:var(--testo);margin-top:18px;opacity:0;animation:fadeUp 1s ease .6s forwards}
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
-  /* CONTENUTO */
-  .wrap{max-width:1100px;margin:0 auto;padding:90px 32px}
-  .lead{text-align:center;max-width:820px;margin:0 auto 70px}
-  .lead .label{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--oro-scuro);margin-bottom:14px}
-  .lead h2{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(1.8rem,4.5vw,2.7rem);color:var(--oro-chiaro);margin-bottom:20px}
-  .lead p{font-size:1.2rem;color:var(--testo-soft)}
-
-  /* blocco testo ufficiale EN */
-  .official{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;margin-bottom:80px}
-  .panel{border:1px solid var(--bordo);border-radius:10px;padding:38px 40px;background:rgba(13,11,20,0.55)}
-  .panel.en{background:linear-gradient(180deg,rgba(230,192,104,0.06),rgba(13,11,20,0.55))}
-  .panel .p-tag{display:inline-flex;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--oro);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--bordo);width:100%}
-  .panel.en .p-tag{color:var(--oro-chiaro)}
-  .panel p{font-size:1.12rem;margin-bottom:14px}
-  .panel.en p{color:var(--testo);font-style:italic}
-  .panel.it p{color:var(--testo-soft)}
-  .panel p .hl{color:var(--fiamma);font-style:normal}
-
-  /* nota professore */
-  .note{max-width:900px;margin:0 auto 70px;border-left:3px solid var(--oro-scuro);background:rgba(230,192,104,0.04);padding:20px 26px;border-radius:0 8px 8px 0}
-  .note .n-title{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-scuro);margin-bottom:8px}
-  .note p{font-size:1.02rem;color:var(--testo-soft);font-style:italic}
-
-  /* pilastri del progetto */
-  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-bottom:30px}
-  .pillar{border:1px solid var(--bordo);border-radius:8px;padding:30px 28px;background:rgba(13,11,20,0.5);text-align:center;transition:transform .4s,border-color .4s}
-  .pillar:hover{transform:translateY(-6px);border-color:var(--oro)}
-  .pillar .ico{font-size:2rem;margin-bottom:14px}
-  .pillar h3{font-family:'Cinzel',serif;font-size:1.15rem;color:var(--oro-chiaro);letter-spacing:.02em;margin-bottom:10px}
-  .pillar p{font-size:1.02rem;color:var(--testo-soft)}
-
-  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
+  .section{max-width:1000px;margin:0 auto;padding:80px 32px}
+  .reveal{opacity:0;transform:translateY(45px);transition:opacity 1s ease,transform 1s ease}
   .reveal.visible{opacity:1;transform:translateY(0)}
+  .lead h2{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(2rem,4.5vw,3rem);color:var(--oro-chiaro);text-align:center;margin-bottom:26px;letter-spacing:.03em}
+  .lead p{font-size:1.55rem;color:var(--testo-soft);text-align:center;max-width:820px;margin:0 auto 18px}
+  .lead p .hl{color:var(--fiamma);font-style:italic}
+
+  /* card info progetto */
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+  .fact{background:linear-gradient(160deg,#15121f,#0d0b14);border:1px solid var(--bordo);border-radius:10px;padding:30px 26px;text-align:center}
+  .fact .ico{font-size:2.4rem;display:block;margin-bottom:12px}
+  .fact h3{font-family:'Cinzel',serif;font-size:1.3rem;color:var(--oro-chiaro);margin-bottom:8px}
+  .fact p{font-size:1.18rem;color:var(--testo-soft)}
+
+  /* blocco testo ufficiale */
+  .official{position:relative;background:linear-gradient(160deg,rgba(230,192,104,0.06),rgba(13,11,20,0.4));border:1px solid var(--bordo);border-radius:16px;padding:54px 56px;margin-top:20px}
+  .official::before{content:'❝';position:absolute;top:18px;left:30px;font-size:5rem;color:var(--oro);opacity:.2;line-height:1;font-family:'Cinzel',serif}
+  .official .off-label{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.25em;text-transform:uppercase;color:var(--oro);text-align:center;margin-bottom:24px}
+  .official p{font-size:1.5rem;color:var(--testo);line-height:1.7;position:relative;z-index:2}
+  .official.en p{font-family:'Cormorant Garamond',serif}
+
+  /* nota */
+  .note{max-width:820px;margin:34px auto 0;font-size:1.2rem;color:var(--oro-scuro);font-style:italic;text-align:center}
 
   footer{position:relative;z-index:2;border-top:1px solid var(--bordo);padding:50px 24px 40px;text-align:center;background:rgba(10,8,16,0.7)}
   footer .f-title{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.2em;color:var(--oro);margin-bottom:12px}
-  footer p{font-size:.95rem;color:var(--testo-soft);margin:4px 0}
-  footer .placeholder{color:var(--oro-scuro);font-style:italic;opacity:.7}
+  footer p{font-size:1.3rem;color:var(--testo-soft);margin:4px 0}
 
   @media(max-width:880px){
     header{padding:14px 20px}
     nav{position:fixed;top:0;right:-100%;width:78%;max-width:340px;height:100vh;flex-direction:column;align-items:flex-start;gap:0;background:rgba(10,9,16,0.99);backdrop-filter:blur(16px);padding:90px 30px 30px;transition:right .4s ease;border-left:1px solid var(--bordo);overflow-y:auto}
     nav.open{right:0}
-    nav a,.dropdown-btn{width:100%;padding:14px 0;font-size:.9rem}
+    nav a,.dropdown-btn{width:100%;padding:14px 0;font-size:.95rem}
     .dropdown{width:100%}
     .dropdown-menu{position:static;transform:none;opacity:1;visibility:visible;background:rgba(255,255,255,0.02);border:none;box-shadow:none;max-height:0;overflow:hidden;transition:max-height .3s;padding:0}
     .dropdown.open-mob .dropdown-menu{max-height:300px;padding:4px 0}
     .lang{margin:20px 0 0 0}
     .burger{display:flex;z-index:101}
-    .official{grid-template-columns:1fr;gap:24px}
-    .pillars{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr}
+    .official{padding:38px 28px}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
@@ -106,7 +94,7 @@
 <body>
 
 <header id="header">
-  <a href="index.html" class="brand">ELYSTRIA</a>
+  <a href="index.html" class="brand"><img src="assets/logo.png" alt="Elystria"></a>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   <nav id="nav">
     <a href="index.html" data-it="Home" data-en="Home">Home</a>
@@ -133,69 +121,37 @@
 <section class="page-hero">
   <div class="page-hero-bg" style="background-image:url(assets/img/keyart.jpg)"></div>
   <div class="page-hero-inner">
-    <div class="page-kicker" data-it="GrowUp Agency presenta" data-en="GrowUp Agency presents">GrowUp Agency presenta</div>
+    <div class="page-kicker" data-it="Chi siamo e cosa abbiamo creato" data-en="Who we are and what we created">Chi siamo e cosa abbiamo creato</div>
     <h1 class="page-title" data-it="Il Progetto" data-en="The Project">Il Progetto</h1>
-    <p class="page-subtitle" data-it="Dall'idea originale a un mondo fantasy in 3D" data-en="From the original idea to a 3D fantasy world">Dall'idea originale a un mondo fantasy in 3D</p>
+    <p class="page-subtitle" data-it="Dall'idea a un mondo fantasy in 3D" data-en="From an idea to a 3D fantasy world">Dall'idea a un mondo fantasy in 3D</p>
   </div>
 </section>
 
-<div class="wrap">
-
+<section class="section">
   <div class="lead reveal">
-    <div class="label" data-it="In breve" data-en="In brief">In breve</div>
-    <h2 data-it="Cos'è Elystria" data-en="What Elystria is">Cos'è Elystria</h2>
-    <p data-it="Elystria è un videogioco fantasy ispirato al concetto degli dèi greci. Il giocatore veste i panni di Theron, l'eroe prescelto, in un mondo open world dove dovrà liberare gli Dei corrotti e sconfiggere Zython per riportare la luce." data-en="Elystria is a fantasy video game inspired by the concept of the Greek gods. The player takes on the role of Theron, the chosen hero, in an open world where they must free the corrupted Gods and defeat Zython to restore the light.">Elystria è un videogioco fantasy ispirato al concetto degli dèi greci. Il giocatore veste i panni di Theron, l'eroe prescelto, in un mondo open world dove dovrà liberare gli Dei corrotti e sconfiggere Zython per riportare la luce.</p>
+    <h2 data-it="Un progetto scolastico, un mondo intero" data-en="A school project, an entire world">Un progetto scolastico, un mondo intero</h2>
+    <p data-it="Elystria nasce come progetto scolastico, ma è cresciuto fino a diventare un universo fantasy completo: una storia originale, dei personaggi, quattro regni elementali e un videogioco immaginato in ogni suo aspetto, dalla narrativa alle meccaniche." data-en="Elystria began as a school project, but it grew into a complete fantasy universe: an original story, characters, four elemental realms and a video game imagined in every aspect, from narrative to mechanics.">Elystria nasce come progetto scolastico, ma è cresciuto fino a diventare un universo fantasy completo: una storia originale, dei personaggi, quattro regni elementali e un videogioco immaginato in ogni suo aspetto, dalla narrativa alle meccaniche.</p>
+    <p data-it="Abbiamo unito scrittura, illustrazione, intelligenza artificiale, modellazione 3D, montaggio video e sviluppo web per dare vita a <span class='hl'>una visione condivisa</span>." data-en="We combined writing, illustration, artificial intelligence, 3D modeling, video editing and web development to bring <span class='hl'>a shared vision</span> to life.">Abbiamo unito scrittura, illustrazione, intelligenza artificiale, modellazione 3D, montaggio video e sviluppo web per dare vita a <span class="hl">una visione condivisa</span>.</p>
   </div>
 
-  <!-- TESTO UFFICIALE: EN integrale + contesto IT -->
-  <div class="official reveal">
-    <div class="panel en">
-      <span class="p-tag" data-it="Testo ufficiale · Inglese" data-en="Official text · English">Testo ufficiale · Inglese</span>
-      <p>Our game is called Elystria. It is a fantasy game inspired by and based on the concept of Greek gods. There are five main deities based on natural elements. The objective is to defeat the corrupt version of each god and free their good counterpart.</p>
-      <p>The game is set in an open world, featuring different scenarios tailored to each god's unique character. The player controls Theron in a first-person perspective; they must free the gods, defeat Zyton, and rid Elystria of the evil influence.</p>
-      <p>This game is particularly interesting and special because... Transforming our original ideas and lore into a fully realized 3D fantasy project, and seeing characters like Theron and Zyton come to life, makes this journey incredibly rewarding and unique.</p>
-    </div>
-    <div class="panel it">
-      <span class="p-tag" data-it="In sintesi · Italiano" data-en="Summary · Italian">In sintesi · Italiano</span>
-      <p data-it="Il nostro gioco si chiama Elystria: un'avventura fantasy ispirata al concetto degli dèi greci. Esistono <span class='hl'>cinque divinità principali</span>, ciascuna legata a un elemento naturale." data-en="Our game is called Elystria: a fantasy adventure inspired by the concept of the Greek gods. There are <span class='hl'>five main deities</span>, each bound to a natural element.">Il nostro gioco si chiama Elystria: un'avventura fantasy ispirata al concetto degli dèi greci. Esistono <span class="hl">cinque divinità principali</span>, ciascuna legata a un elemento naturale.</p>
-      <p data-it="L'obiettivo è sconfiggere la versione corrotta di ogni dio e liberare la sua controparte benevola. Il mondo è un <span class='hl'>open world</span> con scenari diversi, plasmati sul carattere unico di ciascuna divinità." data-en="The goal is to defeat the corrupted version of each god and free its benevolent counterpart. The world is an <span class='hl'>open world</span> with different scenarios, shaped by the unique character of each deity.">L'obiettivo è sconfiggere la versione corrotta di ogni dio e liberare la sua controparte benevola. Il mondo è un <span class="hl">open world</span> con scenari diversi, plasmati sul carattere unico di ciascuna divinità.</p>
-      <p data-it="Si controlla <span class='hl'>Theron</span>: bisogna liberare gli dèi, sconfiggere Zython e ripulire Elystria dall'influenza del male. Dare vita alle nostre idee e al lore in un progetto 3D completo rende questo viaggio davvero unico." data-en="You control <span class='hl'>Theron</span>: you must free the gods, defeat Zython and rid Elystria of the influence of evil. Bringing our ideas and lore to life in a complete 3D project makes this journey truly unique.">Si controlla <span class="hl">Theron</span>: bisogna liberare gli dèi, sconfiggere Zython e ripulire Elystria dall'influenza del male. Dare vita alle nostre idee e al lore in un progetto 3D completo rende questo viaggio davvero unico.</p>
-    </div>
+  <div class="facts reveal">
+    <div class="fact"><span class="ico">📖</span><h3 data-it="Genere" data-en="Genre">Genere</h3><p data-it="Action fantasy / Metroidvania 3D con elementi Souls-like" data-en="Action fantasy / 3D Metroidvania with Souls-like elements">Action fantasy / Metroidvania 3D con elementi Souls-like</p></div>
+    <div class="fact"><span class="ico">🌍</span><h3 data-it="Ambientazione" data-en="Setting">Ambientazione</h3><p data-it="Un open world ispirato al concetto degli dèi greci e degli elementi naturali" data-en="An open world inspired by the concept of Greek gods and natural elements">Un open world ispirato al concetto degli dèi greci e degli elementi naturali</p></div>
+    <div class="fact"><span class="ico">🎯</span><h3 data-it="Obiettivo" data-en="Objective">Obiettivo</h3><p data-it="Liberare i quattro Dei dalla corruzione e sconfiggere il Titano Zython" data-en="Free the four Gods from corruption and defeat the Titan Zython">Liberare i quattro Dei dalla corruzione e sconfiggere il Titano Zython</p></div>
   </div>
+</section>
 
-  <div class="note reveal">
-    <div class="n-title" data-it="Nota di lavorazione" data-en="Production note">Nota di lavorazione</div>
-    <p data-it="Il testo inglese descrive una prospettiva «in prima persona», mentre il Game Design Document prevede un'esperienza 3D in terza persona (Metroidvania / Souls-like). Questa incoerenza va chiarita con il professore: il testo inglese ufficiale è qui riportato senza modifiche." data-en="The English text mentions a «first-person» perspective, while the Game Design Document plans a third-person 3D experience (Metroidvania / Souls-like). This inconsistency should be clarified with the teacher: the official English text is reproduced here unchanged.">Il testo inglese descrive una prospettiva «in prima persona», mentre il Game Design Document prevede un'esperienza 3D in terza persona (Metroidvania / Souls-like). Questa incoerenza va chiarita con il professore: il testo inglese ufficiale è qui riportato senza modifiche.</p>
+<section class="section" style="padding-top:0">
+  <div class="official en reveal">
+    <div class="off-label" data-it="La presentazione ufficiale del progetto (in inglese)" data-en="The official project presentation">La presentazione ufficiale del progetto (in inglese)</div>
+    <p data-it="Our game is called Elystria. It is a fantasy game inspired by and based on the concept of Greek gods. There are five main deities based on natural elements. The objective is to defeat the corrupt version of each god and free their good counterpart. The game is set in an open world, featuring different scenarios tailored to each god's unique character. The player controls Theron in a first-person perspective; they must free the gods, defeat Zyton, and rid Elystria of the evil influence. This game is particularly interesting and special because... Transforming our original ideas and lore into a fully realized 3D fantasy project, and seeing characters like Theron and Zyton come to life, makes this journey incredibly rewarding and unique." data-en="Our game is called Elystria. It is a fantasy game inspired by and based on the concept of Greek gods. There are five main deities based on natural elements. The objective is to defeat the corrupt version of each god and free their good counterpart. The game is set in an open world, featuring different scenarios tailored to each god's unique character. The player controls Theron in a first-person perspective; they must free the gods, defeat Zyton, and rid Elystria of the evil influence. This game is particularly interesting and special because... Transforming our original ideas and lore into a fully realized 3D fantasy project, and seeing characters like Theron and Zyton come to life, makes this journey incredibly rewarding and unique.">Our game is called Elystria. It is a fantasy game inspired by and based on the concept of Greek gods. There are five main deities based on natural elements. The objective is to defeat the corrupt version of each god and free their good counterpart. The game is set in an open world, featuring different scenarios tailored to each god's unique character. The player controls Theron in a first-person perspective; they must free the gods, defeat Zyton, and rid Elystria of the evil influence. This game is particularly interesting and special because... Transforming our original ideas and lore into a fully realized 3D fantasy project, and seeing characters like Theron and Zyton come to life, makes this journey incredibly rewarding and unique.</p>
   </div>
-
-  <!-- PILASTRI -->
-  <div class="lead reveal" style="margin-bottom:40px">
-    <div class="label" data-it="I tre pilastri" data-en="The three pillars">I tre pilastri</div>
-    <h2 data-it="Cosa rende Elystria speciale" data-en="What makes Elystria special">Cosa rende Elystria speciale</h2>
-  </div>
-  <div class="pillars reveal">
-    <div class="pillar">
-      <div class="ico">🏛️</div>
-      <h3 data-it="Mitologia rivisitata" data-en="Reimagined mythology">Mitologia rivisitata</h3>
-      <p data-it="Cinque divinità elementali ispirate al pantheon greco, reinterpretate in chiave originale." data-en="Five elemental deities inspired by the Greek pantheon, reinterpreted in an original way.">Cinque divinità elementali ispirate al pantheon greco, reinterpretate in chiave originale.</p>
-    </div>
-    <div class="pillar">
-      <div class="ico">🌍</div>
-      <h3 data-it="Mondo open world" data-en="Open world">Mondo open world</h3>
-      <p data-it="Quattro Regni distinti, ognuno plasmato sull'elemento e sul carattere del suo Dio." data-en="Four distinct Realms, each shaped by the element and character of its God.">Quattro Regni distinti, ognuno plasmato sull'elemento e sul carattere del suo Dio.</p>
-    </div>
-    <div class="pillar">
-      <div class="ico">✨</div>
-      <h3 data-it="Dall'idea al 3D" data-en="From idea to 3D">Dall'idea al 3D</h3>
-      <p data-it="Lore, personaggi e ambientazioni originali trasformati in un progetto fantasy 3D completo." data-en="Original lore, characters and settings transformed into a complete 3D fantasy project.">Lore, personaggi e ambientazioni originali trasformati in un progetto fantasy 3D completo.</p>
-    </div>
-  </div>
-
-</div>
+  <p class="note reveal" data-it="↑ Questo è il testo ufficiale di presentazione redatto in inglese, riportato integralmente." data-en="↑ This is the official presentation text written in English, reproduced in full.">↑ Questo è il testo ufficiale di presentazione redatto in inglese, riportato integralmente.</p>
+</section>
 
 <footer>
   <div class="f-title">ELYSTRIA — La Fiamma Primordiale</div>
-  <p class="placeholder" data-it="Nome scuola · Classe · Anno scolastico (da inserire)" data-en="School name · Class · School year (to be added)">Nome scuola · Classe · Anno scolastico (da inserire)</p>
+  <p data-it="CFP G. Zanardelli — Anno scolastico 2025/2026" data-en="CFP G. Zanardelli — School year 2025/2026">CFP G. Zanardelli — Anno scolastico 2025/2026</p>
   <p data-it="Progetto realizzato da Ilaria, Martina e Jolanda" data-en="Project created by Ilaria, Martina and Jolanda">Progetto realizzato da Ilaria, Martina e Jolanda</p>
 </footer>
 

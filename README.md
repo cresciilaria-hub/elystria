@@ -2,17 +2,18 @@
 
 Sito web promozionale per il videogioco fantasy **Elystria – La Fiamma Primordiale**,
 progetto scolastico realizzato da Ilaria, Martina e Jolanda (GrowUp Agency).
+CFP G. Zanardelli — Anno scolastico 2025/2026.
 
-## Stato del sito
-- [x] Home (`index.html`) — hero con parallasse, intro, trailer, footer
+## Pagine del sito (tutte complete)
+- [x] Home (`index.html`) — hero con parallasse, presentazione, trailer, footer
+- [x] Il Team (`team.html`) — le tre autrici (ruoli da finalizzare)
+- [x] Il Progetto (`progetto.html`) — presentazione + testo ufficiale in inglese
 - [x] Storia (`storia.html`) — lore completa in 5 capitoli
-- [x] Il Team (`team.html`) — 3 carte con ruoli segnaposto modificabili
-- [x] Il Progetto (`progetto.html`) — testo EN ufficiale + sintesi IT
-- [x] Personaggi (`personaggi.html`) — griglia + popup scheda (3 protagonisti + 4 Dei)
-- [x] I Regni (`regni.html`) — comparatore slider sana→corrotta per i 4 Regni
-- [x] Meccaniche (`meccaniche.html`) — gameplay, Vigore, Santuari, Sinergie, Arsenale
-- [x] Timeline (`timeline.html`) — 10 fasi su linea verticale + popup
-- [x] Galleria (`galleria.html`) — griglia masonry + filtri + lightbox
+- [x] Personaggi (`personaggi.html`) — protagonisti e Dei, con schede popup
+- [x] I Regni (`regni.html`) — i 4 mondi elementali
+- [x] Meccaniche (`meccaniche.html`) — gameplay, sinergie, arsenale
+- [x] Timeline (`timeline.html`) — le 10 fasi del progetto, con popup
+- [x] Galleria (`galleria.html`) — immagini con lightbox
 
 ## Struttura
 - File `.html` nella radice
@@ -29,3 +30,7 @@ Ogni testo ha attributi `data-it` e `data-en`. Il selettore IT/EN nel menu cambi
 4. Deploy
 
 In alternativa, drag-and-drop della cartella su vercel.com.
+
+## Note / da finalizzare
+- Ruoli specifici di Ilaria, Martina e Jolanda nella pagina Team
+- Il trailer YouTube nella Home punta al video del progetto (id VHujgY86Am8)

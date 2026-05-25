@@ -7,11 +7,11 @@ progetto scolastico realizzato da Ilaria, Martina e Jolanda (GrowUp Agency).
 - [x] Home (`index.html`) — hero con parallasse, intro, trailer, footer
 - [x] Storia (`storia.html`) — lore completa in 5 capitoli
 - [ ] Il Team (`team.html`)
-- [ ] Il Progetto (`progetto.html`)
+- [x] Il Progetto (`progetto.html`) — testo EN ufficiale + sintesi IT
 - [x] Personaggi (`personaggi.html`) — griglia + popup scheda (3 protagonisti + 4 Dei)
 - [x] I Regni (`regni.html`) — comparatore slider sana→corrotta per i 4 Regni
 - [ ] Meccaniche (`meccaniche.html`)
-- [ ] Timeline (`timeline.html`)
+- [x] Timeline (`timeline.html`) — 10 fasi su linea verticale + popup
 - [ ] Galleria (`galleria.html`)
 
 ## Struttura

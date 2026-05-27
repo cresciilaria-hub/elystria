@@ -57,14 +57,6 @@
   .intro-realms .hint{margin-top:20px;font-size:1.2rem;color:var(--oro);font-style:italic;display:inline-flex;align-items:center;gap:10px}
   .intro-realms .hint::before,.intro-realms .hint::after{content:'⇆';font-style:normal;font-size:1.4rem}
 
-  /* PANORAMA INTRO sotto l'hero */
-  .world-panorama{max-width:1280px;margin:60px auto 0;padding:0 32px;opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
-  .world-panorama.visible{opacity:1;transform:translateY(0)}
-  .world-panorama-frame{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--bordo);box-shadow:0 30px 70px rgba(0,0,0,0.6),0 0 50px rgba(230,192,104,0.06)}
-  .world-panorama-frame img{display:block;width:100%;height:auto}
-  .world-panorama-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(10,8,16,0.6));pointer-events:none}
-  .world-panorama-caption{text-align:center;margin-top:16px;font-style:italic;color:var(--testo-soft);font-size:1.15rem}
-
   /* REGNO */
   .realm{max-width:1240px;margin:0 auto;padding:70px 40px}
   .realm-head{display:flex;align-items:center;gap:18px;margin-bottom:8px;flex-wrap:wrap}
@@ -161,18 +153,13 @@
 </header>
 
 <section class="page-hero">
-  <div class="page-hero-bg" style="background-image:url(assets/img/amb_vulcano.jpg)"></div>
+  <div class="page-hero-bg" style="background-image:url(assets/img/zython_amb.jpg)"></div>
   <div class="page-hero-inner">
     <div class="page-kicker" data-it="Quattro mondi, quattro prove" data-en="Four worlds, four trials">Quattro mondi, quattro prove</div>
     <h1 class="page-title" data-it="I Regni" data-en="The Realms">I Regni</h1>
     <p class="page-subtitle" data-it="Le terre corrotte dove gli Dei attendono la liberazione" data-en="The corrupted lands where the Gods await liberation">Le terre corrotte dove gli Dei attendono la liberazione</p>
   </div>
 </section>
-
-<div class="world-panorama reveal">
-  <div class="world-panorama-frame"><img src="assets/img/zython_amb.jpg" alt="Il mondo di Elystria"></div>
-  <p class="world-panorama-caption" data-it="Elystria, il mondo che Zython brama possedere" data-en="Elystria, the world Zython yearns to possess">Elystria, il mondo che Zython brama possedere</p>
-</div>
 
 <div class="intro-realms">
   <p data-it="Ogni Dio caduto è prigioniero del proprio regno, trasformato dalla corruzione di Zython in un'arena ostile. Theron dovrà attraversarli tutti, sconfiggere la forma corrotta di ciascun Dio e liberarne l'essenza." data-en="Each fallen God is a prisoner of its own realm, transformed by Zython's corruption into a hostile arena. Theron must cross them all, defeat the corrupted form of each God and free its essence.">Ogni Dio caduto è prigioniero del proprio regno, trasformato dalla corruzione di Zython in un'arena ostile. Theron dovrà attraversarli tutti, sconfiggere la forma corrotta di ciascun Dio e liberarne l'essenza.</p>
@@ -311,7 +298,7 @@
 
   // reveal slider on scroll
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.2});
-  document.querySelectorAll('.slider, .world-panorama').forEach(el=>io.observe(el));
+  document.querySelectorAll('.slider').forEach(el=>io.observe(el));
 
   // SLIDER before/after: gestione drag
   function setupSlider(slider){

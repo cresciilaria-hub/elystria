@@ -57,21 +57,19 @@
   .section-head{text-align:center;margin-bottom:50px}
   .section-head h2{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(2rem,4.5vw,3rem);color:var(--oro-chiaro);letter-spacing:.03em;margin-bottom:14px}
   .section-head p{font-size:1.4rem;color:var(--testo-soft);max-width:760px;margin:0 auto}
+  .hint-slider{text-align:center;color:var(--oro-chiaro);font-style:italic;font-size:1.25rem;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:16px}
+  .hint-slider::before,.hint-slider::after{content:'⇆';font-style:normal;font-size:1.4rem}
 
-  /* GRIGLIA PERSONAGGI */
+  /* GRIGLIA PROTAGONISTI */
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px}
   .grid.heroes{grid-template-columns:repeat(3,1fr);max-width:1000px;margin:0 auto}
   .card{position:relative;border-radius:8px;overflow:hidden;cursor:pointer;background:#13111c;border:1px solid var(--bordo);transition:transform .4s ease,box-shadow .4s ease;opacity:0;transform:translateY(40px)}
   .card.visible{opacity:1;transform:translateY(0)}
   .card:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,0.6),0 0 40px rgba(230,192,104,0.12)}
   .card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(160deg,#1a1726,#0d0b14)}
-  .card-img img{width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform 1s ease}
+  .card-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;transition:transform 1s ease}
   .card:hover .card-img img{transform:scale(1.07)}
   .card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(10,8,16,0.96))}
-  /* segnaposto elegante per immagini mancanti */
-  .card-img.placeholder{display:flex;align-items:center;justify-content:center}
-  .card-img.placeholder .ph-sym{font-family:'Cinzel',serif;font-size:4.5rem;color:var(--oro-scuro);opacity:.5}
-  .card-img.placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(230,192,104,0.08),transparent 65%)}
   .card-cap{position:absolute;left:0;right:0;bottom:0;padding:22px 22px 24px;z-index:2}
   .card-role{font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;color:var(--oro);margin-bottom:6px}
   .card-name{font-family:'Cinzel',serif;font-weight:700;font-size:1.7rem;color:var(--oro-chiaro);line-height:1.1}
@@ -82,33 +80,65 @@
   .el-aria{color:var(--aria);border-color:var(--aria)}
   .el-fiamma{color:var(--fiamma);border-color:var(--fiamma)}
   .el-ombra{color:var(--corruzione);border-color:var(--corruzione)}
+  .el-saggezza{color:var(--oro-chiaro);border-color:var(--oro-chiaro)}
   .tap-hint{position:absolute;top:14px;right:14px;z-index:3;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.1em;color:var(--oro-chiaro);background:rgba(10,8,16,0.7);border:1px solid var(--bordo);border-radius:20px;padding:4px 12px;opacity:0;transition:opacity .3s}
   .card:hover .tap-hint{opacity:1}
 
-  .divider-title{text-align:center;font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.4em;text-transform:uppercase;color:var(--oro-scuro);margin:30px 0 0;position:relative}
+  /* SEZIONE DEI: due colonne (slider + testo) per ogni Dio */
+  .god{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;margin-bottom:90px}
+  .god.right .god-slider-wrap{order:2}
+  .god-slider-wrap{position:relative}
+  .god-info-col{padding:10px}
+  .god-element{display:inline-block;font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.22em;text-transform:uppercase;padding:5px 14px;border-radius:20px;border:1px solid;margin-bottom:14px}
+  .god-name{font-family:'Cinzel',serif;font-weight:800;font-size:clamp(2rem,3.6vw,2.8rem);color:var(--oro-chiaro);line-height:1.05;margin-bottom:6px}
+  .god-sub{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+  .god-info-col p{font-size:1.35rem;color:var(--testo-soft);margin-bottom:14px}
+  .god-info-col p .hl{color:var(--fiamma);font-style:italic}
+  .god-corrupt-box{margin-top:14px;padding:18px 20px;border-radius:8px;background:rgba(157,91,210,0.08);border:1px solid rgba(157,91,210,0.3)}
+  .god-corrupt-box .cb-label{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;color:var(--corruzione);margin-bottom:6px}
+  .god-corrupt-box p{margin-bottom:0;font-size:1.2rem;color:var(--testo)}
 
-  /* POPUP / MODALE */
+  /* SLIDER before/after (identico ai Regni) */
+  .slider{position:relative;width:100%;aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:1px solid var(--bordo);box-shadow:0 30px 70px rgba(0,0,0,0.6),0 0 50px rgba(230,192,104,0.08);user-select:none;cursor:ew-resize;opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
+  .slider.visible{opacity:1;transform:translateY(0)}
+  .slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;display:block}
+  .slider .img-corrupt{z-index:1}
+  .slider .img-healthy-wrap{position:absolute;inset:0;z-index:2;width:50%;overflow:hidden}
+  .slider .img-healthy-wrap img{width:auto;height:100%}
+  .slider .tag{position:absolute;top:16px;z-index:4;font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:20px;background:rgba(10,8,16,0.78);border:1px solid var(--bordo);pointer-events:none;transition:opacity .3s}
+  .slider .tag-healthy{left:16px;color:var(--oro-chiaro)}
+  .slider .tag-corrupt{right:16px;color:var(--corruzione);border-color:rgba(157,91,210,0.5)}
+  .slider .handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--oro-chiaro);z-index:3;transform:translateX(-50%);box-shadow:0 0 18px rgba(255,206,77,0.6);pointer-events:none}
+  .slider .handle::after{content:'⇆';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:var(--oro);color:var(--nero);display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+
+  /* colori bordo info per ogni elemento */
+  .god.acqua .god-element{color:var(--acqua);border-color:var(--acqua)}
+  .god.acqua .god-sub{color:var(--acqua)}
+  .god.fuoco .god-element{color:var(--fuoco);border-color:var(--fuoco)}
+  .god.fuoco .god-sub{color:var(--fuoco)}
+  .god.terra .god-element{color:var(--terra);border-color:var(--terra)}
+  .god.terra .god-sub{color:var(--terra)}
+  .god.aria .god-element{color:var(--aria);border-color:var(--aria)}
+  .god.aria .god-sub{color:var(--aria)}
+
+  .gods-divider{height:1px;width:60%;max-width:600px;margin:0 auto 60px;background:linear-gradient(90deg,transparent,var(--bordo),transparent)}
+
+  /* POPUP / MODALE (solo per protagonisti) */
   .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(5,4,9,0.86);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:30px;opacity:0;visibility:hidden;transition:opacity .35s}
   .modal-overlay.open{opacity:1;visibility:visible}
   .modal{position:relative;max-width:920px;width:100%;max-height:88vh;overflow-y:auto;background:linear-gradient(160deg,#15121f,#0c0a12);border:1px solid var(--bordo);border-radius:12px;box-shadow:0 40px 100px rgba(0,0,0,0.7);transform:scale(.92) translateY(20px);transition:transform .35s}
   .modal-overlay.open .modal{transform:scale(1) translateY(0)}
   .modal-grid{display:grid;grid-template-columns:340px 1fr}
   .modal-img{position:relative;overflow:hidden;background:linear-gradient(160deg,#1a1726,#0d0b14);min-height:420px}
-  .modal-img img{width:100%;height:100%;object-fit:cover;object-position:center 18%;position:absolute;inset:0}
-  .modal-img.placeholder{display:flex;align-items:center;justify-content:center}
-  .modal-img.placeholder .ph-sym{font-family:'Cinzel',serif;font-size:6rem;color:var(--oro-scuro);opacity:.45}
+  .modal-img img{width:100%;height:100%;object-fit:cover;object-position:center 22%;position:absolute;inset:0}
   .modal-body{padding:42px 44px 46px}
   .modal-role{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.25em;text-transform:uppercase;color:var(--oro);margin-bottom:10px}
   .modal-name{font-family:'Cinzel',serif;font-weight:800;font-size:2.6rem;color:var(--oro-chiaro);line-height:1.05;margin-bottom:8px}
   .modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
   .modal-body p{font-size:1.35rem;color:var(--testo-soft);margin-bottom:16px}
   .modal-body p .hl{color:var(--fiamma);font-style:italic}
-  .modal-section-label{font-family:'Cinzel',serif;font-size:.95rem;letter-spacing:.2em;text-transform:uppercase;color:var(--oro-scuro);margin:24px 0 8px}
   .modal-close{position:absolute;top:16px;right:18px;z-index:5;width:44px;height:44px;border-radius:50%;background:rgba(10,8,16,0.7);border:1px solid var(--bordo);color:var(--oro-chiaro);font-size:1.6rem;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .25s}
   .modal-close:hover{background:var(--oro);color:var(--nero);transform:rotate(90deg)}
-  .corrupt-box{margin-top:8px;padding:18px 20px;border-radius:8px;background:rgba(157,91,210,0.08);border:1px solid rgba(157,91,210,0.3)}
-  .corrupt-box .cb-label{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.2em;text-transform:uppercase;color:var(--corruzione);margin-bottom:6px}
-  .corrupt-box p{margin-bottom:0;font-size:1.25rem}
 
   footer{position:relative;z-index:2;border-top:1px solid var(--bordo);padding:50px 24px 40px;text-align:center;background:rgba(10,8,16,0.7);margin-top:70px}
   footer .f-title{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.2em;color:var(--oro);margin-bottom:12px}
@@ -116,6 +146,8 @@
 
   @media(max-width:980px){
     .grid,.grid.heroes{grid-template-columns:repeat(2,1fr);max-width:640px}
+    .god,.god.right{grid-template-columns:1fr;gap:30px}
+    .god.right .god-slider-wrap{order:0}
   }
   @media(max-width:880px){
     header{padding:14px 20px}
@@ -173,6 +205,7 @@
   </div>
 </section>
 
+<!-- ============ PROTAGONISTI ============ -->
 <section class="section">
   <div class="section-head">
     <h2 data-it="I Protagonisti" data-en="The Protagonists">I Protagonisti</h2>
@@ -181,15 +214,115 @@
   <div class="grid heroes" id="gridHeroes"></div>
 </section>
 
+<!-- ============ I QUATTRO DEI ============ -->
 <section class="section">
   <div class="section-head">
-    <h2 data-it="I Cinque Dei" data-en="The Five Gods">I Cinque Dei</h2>
-    <p data-it="Cinque divinità legate agli elementi. Quattro sono cadute nella corruzione di Zython: Theron dovrà liberarle." data-en="Five deities bound to the elements. Four have fallen to Zython's corruption: Theron must free them.">Cinque divinità legate agli elementi. Quattro sono cadute nella corruzione di Zython: Theron dovrà liberarle.</p>
+    <h2 data-it="I Quattro Dei" data-en="The Four Gods">I Quattro Dei</h2>
+    <p data-it="Quattro divinità legate agli elementi, cadute nella corruzione di Zython. Theron dovrà liberarle e assorbirne il potere." data-en="Four deities bound to the elements, fallen to Zython's corruption. Theron must free them and absorb their power.">Quattro divinità legate agli elementi, cadute nella corruzione di Zython. Theron dovrà liberarle e assorbirne il potere.</p>
+    <div class="hint-slider" data-it="Trascina la maniglia per rivelare la corruzione" data-en="Drag the handle to reveal the corruption">Trascina la maniglia per rivelare la corruzione</div>
   </div>
-  <div class="grid" id="gridGods"></div>
+
+  <!-- ADORIA (Acqua) -->
+  <div class="god acqua">
+    <div class="god-slider-wrap">
+      <div class="slider" data-healthy="assets/img/adoria.jpg" data-corrupt="assets/img/adoria_corrotto.jpg">
+        <img class="img-corrupt" src="assets/img/adoria_corrotto.jpg" alt="Adoria corrotta">
+        <div class="img-healthy-wrap"><img src="assets/img/adoria.jpg" alt="Adoria sana"></div>
+        <span class="tag tag-healthy" data-it="Integra" data-en="Pure">Integra</span>
+        <span class="tag tag-corrupt" data-it="Corrotta" data-en="Corrupted">Corrotta</span>
+        <div class="handle"></div>
+      </div>
+    </div>
+    <div class="god-info-col">
+      <span class="god-element" data-it="Acqua" data-en="Water">Acqua</span>
+      <div class="god-name">Adoria</div>
+      <div class="god-sub" data-it="Dea dell'Acqua" data-en="Goddess of Water">Dea dell'Acqua</div>
+      <p data-it="Adoria incarna la grazia fluida e la profondità degli abissi. Regnava sul Tempio Sommerso, dove l'acqua cantava in armonia con la Fiamma." data-en="Adoria embodies fluid grace and the depth of the abyss. She reigned over the Sunken Temple, where water sang in harmony with the Flame.">Adoria incarna la grazia fluida e la profondità degli abissi. Regnava sul Tempio Sommerso, dove l'acqua cantava in armonia con la Fiamma.</p>
+      <p data-it="Theron dovrà affrontarla nella sua arena, il Tempio Sommerso, per liberarne l'anima e assorbirne il potere dell'Acqua." data-en="Theron must face her in her arena, the Sunken Temple, to free her soul and absorb the power of Water.">Theron dovrà affrontarla nella sua arena, il Tempio Sommerso, per liberarne l'anima e assorbirne il potere dell'Acqua.</p>
+      <div class="god-corrupt-box">
+        <div class="cb-label" data-it="Sotto la corruzione" data-en="Under corruption">Sotto la corruzione</div>
+        <p data-it="Trasformata nella <span class='hl'>Necrosirena</span>, un essere abissale e ostile." data-en="Transformed into the <span class='hl'>Necrosiren</span>, an abyssal, hostile being.">Trasformata nella <span class="hl">Necrosirena</span>, un essere abissale e ostile.</p>
+      </div>
+    </div>
+  </div>
+  <div class="gods-divider"></div>
+
+  <!-- FIRYON (Fuoco) -->
+  <div class="god fuoco right">
+    <div class="god-slider-wrap">
+      <div class="slider" data-healthy="assets/img/firyon.jpg" data-corrupt="assets/img/firyon_corrotto.jpg">
+        <img class="img-corrupt" src="assets/img/firyon_corrotto.jpg" alt="Firyon corrotto">
+        <div class="img-healthy-wrap"><img src="assets/img/firyon.jpg" alt="Firyon sano"></div>
+        <span class="tag tag-healthy" data-it="Integro" data-en="Pure">Integro</span>
+        <span class="tag tag-corrupt" data-it="Corrotto" data-en="Corrupted">Corrotto</span>
+        <div class="handle"></div>
+      </div>
+    </div>
+    <div class="god-info-col">
+      <span class="god-element" data-it="Fuoco" data-en="Fire">Fuoco</span>
+      <div class="god-name">Firyon</div>
+      <div class="god-sub" data-it="Dio del Fuoco" data-en="God of Fire">Dio del Fuoco</div>
+      <p data-it="Firyon è l'ardore vitale, la forgia del mondo. Custodiva il Vulcano del Cuore Fuso, dove il fuoco creava invece di distruggere." data-en="Firyon is vital ardor, the forge of the world. He guarded the Volcano of the Molten Heart, where fire created instead of destroying.">Firyon è l'ardore vitale, la forgia del mondo. Custodiva il Vulcano del Cuore Fuso, dove il fuoco creava invece di distruggere.</p>
+      <p data-it="La sua arena è il Vulcano del Cuore Fuso: una prova di resistenza al calore e alla rabbia." data-en="His arena is the Volcano of the Molten Heart: a trial of resistance to heat and rage.">La sua arena è il Vulcano del Cuore Fuso: una prova di resistenza al calore e alla rabbia.</p>
+      <div class="god-corrupt-box">
+        <div class="cb-label" data-it="Sotto la corruzione" data-en="Under corruption">Sotto la corruzione</div>
+        <p data-it="Divenuto un <span class='hl'>Colosso di lava</span>, una furia incandescente che brucia ogni cosa." data-en="Became a <span class='hl'>Lava Colossus</span>, an incandescent fury that burns everything.">Divenuto un <span class="hl">Colosso di lava</span>, una furia incandescente che brucia ogni cosa.</p>
+      </div>
+    </div>
+  </div>
+  <div class="gods-divider"></div>
+
+  <!-- GAIROK (Terra) -->
+  <div class="god terra">
+    <div class="god-slider-wrap">
+      <div class="slider" data-healthy="assets/img/gairok.jpg" data-corrupt="assets/img/gairok_corrotto.jpg">
+        <img class="img-corrupt" src="assets/img/gairok_corrotto.jpg" alt="Gairok corrotto">
+        <div class="img-healthy-wrap"><img src="assets/img/gairok.jpg" alt="Gairok sano"></div>
+        <span class="tag tag-healthy" data-it="Integro" data-en="Pure">Integro</span>
+        <span class="tag tag-corrupt" data-it="Corrotto" data-en="Corrupted">Corrotto</span>
+        <div class="handle"></div>
+      </div>
+    </div>
+    <div class="god-info-col">
+      <span class="god-element" data-it="Terra" data-en="Earth">Terra</span>
+      <div class="god-name">Gairok</div>
+      <div class="god-sub" data-it="Dio della Terra" data-en="God of Earth">Dio della Terra</div>
+      <p data-it="Gairok è la forza paziente della natura, radici e roccia. Vegliava sulla Foresta vivente, in equilibrio con ogni creatura." data-en="Gairok is the patient force of nature, roots and rock. He watched over the living Forest, in balance with every creature.">Gairok è la forza paziente della natura, radici e roccia. Vegliava sulla Foresta vivente, in equilibrio con ogni creatura.</p>
+      <p data-it="La sua arena è la Foresta Distorta, dove la natura stessa è diventata trappola." data-en="His arena is the Distorted Forest, where nature itself has become a trap.">La sua arena è la Foresta Distorta, dove la natura stessa è diventata trappola.</p>
+      <div class="god-corrupt-box">
+        <div class="cb-label" data-it="Sotto la corruzione" data-en="Under corruption">Sotto la corruzione</div>
+        <p data-it="Piegato in un <span class='hl'>Mostro-Albero</span>, un groviglio ostile che ha distorto la foresta in un labirinto contorto." data-en="Twisted into a <span class='hl'>Tree-Monster</span>, a hostile tangle that warped the forest into a contorted maze.">Piegato in un <span class="hl">Mostro-Albero</span>, un groviglio ostile che ha distorto la foresta in un labirinto contorto.</p>
+      </div>
+    </div>
+  </div>
+  <div class="gods-divider"></div>
+
+  <!-- NERAYA (Aria) -->
+  <div class="god aria right">
+    <div class="god-slider-wrap">
+      <div class="slider" data-healthy="assets/img/neraya.jpg" data-corrupt="assets/img/neraya_corrotto.jpg">
+        <img class="img-corrupt" src="assets/img/neraya_corrotto.jpg" alt="Neraya corrotta">
+        <div class="img-healthy-wrap"><img src="assets/img/neraya.jpg" alt="Neraya sana"></div>
+        <span class="tag tag-healthy" data-it="Integra" data-en="Pure">Integra</span>
+        <span class="tag tag-corrupt" data-it="Corrotta" data-en="Corrupted">Corrotta</span>
+        <div class="handle"></div>
+      </div>
+    </div>
+    <div class="god-info-col">
+      <span class="god-element" data-it="Aria" data-en="Air">Aria</span>
+      <div class="god-name">Neraya</div>
+      <div class="god-sub" data-it="Dea dell'Aria" data-en="Goddess of Air">Dea dell'Aria</div>
+      <p data-it="Neraya è il respiro del cielo, leggerezza e libertà. Dimorava nel Santuario Sospeso, tra le correnti d'alta quota." data-en="Neraya is the breath of the sky, lightness and freedom. She dwelled in the Suspended Sanctuary, among the high-altitude currents.">Neraya è il respiro del cielo, leggerezza e libertà. Dimorava nel Santuario Sospeso, tra le correnti d'alta quota.</p>
+      <p data-it="La sua arena è il Santuario Sospeso, dove il terreno stesso manca sotto i piedi." data-en="Her arena is the Suspended Sanctuary, where the ground itself is missing beneath your feet.">La sua arena è il Santuario Sospeso, dove il terreno stesso manca sotto i piedi.</p>
+      <div class="god-corrupt-box">
+        <div class="cb-label" data-it="Sotto la corruzione" data-en="Under corruption">Sotto la corruzione</div>
+        <p data-it="Divenuta uno <span class='hl'>Spirito Eterico</span> instabile, un vortice di venti taglienti e illusioni." data-en="Became an unstable <span class='hl'>Etheric Spirit</span>, a vortex of cutting winds and illusions.">Divenuta uno <span class="hl">Spirito Eterico</span> instabile, un vortice di venti taglienti e illusioni.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- MODALE -->
+<!-- MODALE per i 3 protagonisti -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" id="modalClose" aria-label="Chiudi">×</button>
@@ -207,12 +340,12 @@
 </footer>
 
 <script>
-  // ============ DATI PERSONAGGI ============
-  const characters = {
+  // ============ DATI PROTAGONISTI ============
+  const protagonisti = {
     theron:{
       role:{it:"Il Prediletto",en:"The Chosen One"},
       name:{it:"Theron",en:"Theron"},
-      img:"assets/img/theron3.jpg",
+      img:"assets/img/theron_prot.jpg",
       tags:[{cls:"el-fiamma",it:"Fiamma",en:"Flame"}],
       desc:{
         it:["Nato dall'unione proibita tra un Dio e una mortale, Theron è cresciuto ignaro della sua vera eredità in un villaggio di montagna.","La sua discendenza gli conferisce un dono unico: la <span class='hl'>Risonanza Divina</span> e l'immunità alla corruzione. Non solo può usare la Fiamma Primordiale, ma fonderla con la propria essenza.","Guidato da Ophelia, è l'unica speranza per liberare gli Dei caduti e affrontare il Titano Zython."],
@@ -222,82 +355,34 @@
     ophelia:{
       role:{it:"Dea della Saggezza",en:"Goddess of Wisdom"},
       name:{it:"Ophelia",en:"Ophelia"},
-      img:"assets/img/ophelia.jpg",
-      tags:[{cls:"el-fiamma",it:"Custode della Fiamma",en:"Keeper of the Flame"}],
+      img:"assets/img/ophelia_prot.jpg",
+      tags:[{cls:"el-saggezza",it:"Custode della Fiamma",en:"Keeper of the Flame"}],
       desc:{
-        it:["Custode dell'ultimo frammento intatto della Fiamma Primordiale, Ophelia fu l'unica a sfuggire alla furia di Zython.","Sacrificò la sua forma fisica, divenendo uno <span class='hl'>spirito etereo</span> legato alla Fiamma. È la mentore di Theron e la voce che lo guida nel suo viaggio.","La sua missione è disperata: trovare qualcuno capace di brandire la Fiamma senza esserne consumato."],
-        en:["Keeper of the last intact shard of the Primordial Flame, Ophelia was the only one to escape Zython's fury.","She sacrificed her physical form, becoming an <span class='hl'>ethereal spirit</span> bound to the Flame. She is Theron's mentor and the voice that guides him on his journey.","Her mission is desperate: to find someone able to wield the Flame without being consumed by it."]
+        it:["Custode dell'ultimo frammento intatto della Fiamma Primordiale, Ophelia fu l'unica Dea a sfuggire alla furia di Zython: non corrotta, conserva la sua piena lucidità.","Sacrificò la sua forma fisica, divenendo uno <span class='hl'>spirito etereo</span> legato alla Fiamma. È la mentore di Theron e la voce che lo guida nel suo viaggio.","La sua missione è disperata: trovare qualcuno capace di brandire la Fiamma senza esserne consumato."],
+        en:["Keeper of the last intact shard of the Primordial Flame, Ophelia was the only Goddess to escape Zython's fury: uncorrupted, she retains her full clarity.","She sacrificed her physical form, becoming an <span class='hl'>ethereal spirit</span> bound to the Flame. She is Theron's mentor and the voice that guides him on his journey.","Her mission is desperate: to find someone able to wield the Flame without being consumed by it."]
       }
     },
     zython:{
       role:{it:"Il Primo Divoratore",en:"The First Devourer"},
       name:{it:"Zython",en:"Zython"},
-      img:"assets/img/zython.jpg",
+      img:"assets/img/zython_prot.jpg",
       tags:[{cls:"el-ombra",it:"Titano dell'Ombra",en:"Titan of Shadow"}],
       desc:{
         it:["Entità di antica oscurità e invidia, Zython desidera il potere assoluto della Fiamma per riscrivere la realtà a sua immagine.","Con ferocia inaudita sopraffece quattro dei cinque Dei. Non li uccise: li <span class='hl'>imprigionò in corpi mostruosi e corrotti</span>.","Idra dalle molte teste, corpo draconico e tentacoli d'ombra: è il boss finale, l'ostacolo ultimo alla rinascita di Elystria."],
         en:["An entity of ancient darkness and envy, Zython craves the absolute power of the Flame to rewrite reality in his image.","With unheard-of ferocity he overpowered four of the five Gods. He did not kill them: he <span class='hl'>imprisoned them in monstrous, corrupted bodies</span>.","A many-headed hydra with a draconic body and shadow tentacles: he is the final boss, the ultimate obstacle to Elystria's rebirth."]
       }
-    },
-    adoria:{
-      role:{it:"Dea dell'Acqua",en:"Goddess of Water"},
-      name:{it:"Adoria",en:"Adoria"},
-      img:null, sym:"≈",
-      tags:[{cls:"el-acqua",it:"Acqua",en:"Water"}],
-      desc:{
-        it:["Adoria incarna la grazia fluida e la profondità degli abissi. Regnava sul Tempio Sommerso, dove l'acqua cantava in armonia con la Fiamma.","Sotto la corruzione di Zython si è trasformata nella <span class='hl'>Necrosirena</span>, un essere abissale e ostile.","Theron dovrà affrontarla nella sua arena, il Tempio Sommerso, per liberarne l'anima e assorbirne il potere dell'Acqua."],
-        en:["Adoria embodies fluid grace and the depth of the abyss. She reigned over the Sunken Temple, where water sang in harmony with the Flame.","Under Zython's corruption she was transformed into the <span class='hl'>Necrosiren</span>, an abyssal, hostile being.","Theron must face her in her arena, the Sunken Temple, to free her soul and absorb the power of Water."]
-      },
-      corrupt:{it:"Forma corrotta: la Necrosirena",en:"Corrupted form: the Necrosiren"}
-    },
-    firyon:{
-      role:{it:"Dio del Fuoco",en:"God of Fire"},
-      name:{it:"Firyon",en:"Firyon"},
-      img:null, sym:"△",
-      tags:[{cls:"el-fuoco",it:"Fuoco",en:"Fire"}],
-      desc:{
-        it:["Firyon è l'ardore vitale, la forgia del mondo. Custodiva il Vulcano del Cuore Fuso, dove il fuoco creava invece di distruggere.","Corrotto, è divenuto un <span class='hl'>Colosso di lava</span>, una furia incandescente che brucia ogni cosa.","La sua arena è il Vulcano del Cuore Fuso: una prova di resistenza al calore e alla rabbia."],
-        en:["Firyon is vital ardor, the forge of the world. He guarded the Volcano of the Molten Heart, where fire created instead of destroying.","Corrupted, he became a <span class='hl'>Lava Colossus</span>, an incandescent fury that burns everything.","His arena is the Volcano of the Molten Heart: a trial of resistance to heat and rage."]
-      },
-      corrupt:{it:"Forma corrotta: il Colosso di lava",en:"Corrupted form: the Lava Colossus"}
-    },
-    gairok:{
-      role:{it:"Dio della Terra",en:"God of Earth"},
-      name:{it:"Gairok",en:"Gairok"},
-      img:"assets/img/gairok.jpg",
-      tags:[{cls:"el-terra",it:"Terra",en:"Earth"}],
-      desc:{
-        it:["Gairok è la forza paziente della natura, radici e roccia. Vegliava sulla Foresta vivente, in equilibrio con ogni creatura.","La corruzione lo ha piegato in un <span class='hl'>Mostro-Albero</span>, un groviglio ostile che ha distorto la foresta in un labirinto contorto.","La sua arena è la Foresta Distorta, dove la natura stessa è diventata trappola."],
-        en:["Gairok is the patient force of nature, roots and rock. He watched over the living Forest, in balance with every creature.","Corruption twisted him into a <span class='hl'>Tree-Monster</span>, a hostile tangle that warped the forest into a contorted maze.","His arena is the Distorted Forest, where nature itself has become a trap."]
-      },
-      corrupt:{it:"Forma corrotta: il Mostro-Albero",en:"Corrupted form: the Tree-Monster"}
-    },
-    neraya:{
-      role:{it:"Dea dell'Aria",en:"Goddess of Air"},
-      name:{it:"Neraya",en:"Neraya"},
-      img:null, sym:"≋",
-      tags:[{cls:"el-aria",it:"Aria",en:"Air"}],
-      desc:{
-        it:["Neraya è il respiro del cielo, leggerezza e libertà. Dimorava nel Santuario Sospeso, tra le correnti d'alta quota.","Corrotta, è divenuta uno <span class='hl'>Spirito Eterico</span> instabile, un vortice di venti taglienti e illusioni.","La sua arena è il Santuario Sospeso, dove il terreno stesso manca sotto i piedi."],
-        en:["Neraya is the breath of the sky, lightness and freedom. She dwelled in the Suspended Sanctuary, among the high-altitude currents.","Corrupted, she became an unstable <span class='hl'>Etheric Spirit</span>, a vortex of cutting winds and illusions.","Her arena is the Suspended Sanctuary, where the ground itself is missing beneath your feet."]
-      },
-      corrupt:{it:"Forma corrotta: lo Spirito Eterico",en:"Corrupted form: the Etheric Spirit"}
     }
   };
 
   let currentLang='it';
   const heroOrder=['theron','ophelia','zython'];
-  const godOrder=['adoria','firyon','gairok','neraya'];
 
   function cardHTML(key){
-    const c=characters[key];
-    const imgPart = c.img
-      ? `<div class="card-img"><img src="${c.img}" alt="${c.name[currentLang]}"></div>`
-      : `<div class="card-img placeholder"><span class="ph-sym">${c.sym||'✦'}</span></div>`;
+    const c=protagonisti[key];
     const tag = c.tags[0];
     return `<div class="card" data-key="${key}">
       <span class="tap-hint" data-it="Scopri ›" data-en="Discover ›">${currentLang==='it'?'Scopri ›':'Discover ›'}</span>
-      ${imgPart}
+      <div class="card-img"><img src="${c.img}" alt="${c.name[currentLang]}"></div>
       <div class="card-cap">
         <div class="card-role">${c.role[currentLang]}</div>
         <div class="card-name">${c.name[currentLang]}</div>
@@ -306,30 +391,24 @@
     </div>`;
   }
 
-  function renderGrids(){
+  function renderHeroes(){
     document.getElementById('gridHeroes').innerHTML=heroOrder.map(cardHTML).join('');
-    document.getElementById('gridGods').innerHTML=godOrder.map(cardHTML).join('');
     attachCardEvents();
     observeCards();
   }
 
   function openModal(key){
-    const c=characters[key];
+    const c=protagonisti[key];
     const img=document.getElementById('modalImg');
-    if(c.img){img.className='modal-img';img.innerHTML=`<img src="${c.img}" alt="${c.name[currentLang]}">`;}
-    else{img.className='modal-img placeholder';img.innerHTML=`<span class="ph-sym">${c.sym||'✦'}</span>`;}
+    img.className='modal-img';
+    img.innerHTML=`<img src="${c.img}" alt="${c.name[currentLang]}">`;
     const tags=c.tags.map(t=>`<span class="card-el ${t.cls}">${t[currentLang]}</span>`).join('');
     const paras=c.desc[currentLang].map(p=>`<p>${p}</p>`).join('');
-    let corruptBox='';
-    if(c.corrupt){
-      corruptBox=`<div class="corrupt-box"><div class="cb-label" data-it="Sotto la corruzione" data-en="Under corruption">${currentLang==='it'?'Sotto la corruzione':'Under corruption'}</div><p>${c.corrupt[currentLang]}</p></div>`;
-    }
     document.getElementById('modalBody').innerHTML=
       `<div class="modal-role">${c.role[currentLang]}</div>
        <div class="modal-name">${c.name[currentLang]}</div>
        <div class="modal-tags">${tags}</div>
-       ${paras}
-       ${corruptBox}`;
+       ${paras}`;
     document.getElementById('modal').classList.add('open');
     document.body.style.overflow='hidden';
   }
@@ -352,6 +431,39 @@
     document.querySelectorAll('.card').forEach((c,i)=>{c.dataset.delay=(i%3)*90;io.observe(c)});
   }
 
+  // SLIDER reveal on scroll + drag (identico ai Regni)
+  const ioSlider=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.2});
+  document.querySelectorAll('.slider').forEach(el=>ioSlider.observe(el));
+
+  function setupSlider(slider){
+    const healthyWrap=slider.querySelector('.img-healthy-wrap');
+    const handle=slider.querySelector('.handle');
+    function syncWidth(){
+      const w=slider.clientWidth;
+      const img=healthyWrap.querySelector('img');
+      img.style.width=w+'px';
+    }
+    syncWidth();
+    window.addEventListener('resize',syncWidth);
+
+    function setPos(clientX){
+      const rect=slider.getBoundingClientRect();
+      let x=clientX-rect.left;
+      x=Math.max(0,Math.min(x,rect.width));
+      const pct=(x/rect.width)*100;
+      healthyWrap.style.width=pct+'%';
+      handle.style.left=pct+'%';
+    }
+    let dragging=false;
+    slider.addEventListener('mousedown',e=>{dragging=true;setPos(e.clientX)});
+    window.addEventListener('mousemove',e=>{if(dragging)setPos(e.clientX)});
+    window.addEventListener('mouseup',()=>dragging=false);
+    slider.addEventListener('touchstart',e=>{dragging=true;setPos(e.touches[0].clientX)},{passive:true});
+    window.addEventListener('touchmove',e=>{if(dragging)setPos(e.touches[0].clientX)},{passive:true});
+    window.addEventListener('touchend',()=>dragging=false);
+  }
+  document.querySelectorAll('.slider').forEach(setupSlider);
+
   // LINGUA
   function setLang(lang){
     currentLang=lang;
@@ -359,10 +471,7 @@
     document.querySelectorAll('[data-it]').forEach(el=>{const t=el.getAttribute('data-'+lang);if(t!==null)el.innerHTML=t});
     document.getElementById('lang-it').classList.toggle('active',lang==='it');
     document.getElementById('lang-en').classList.toggle('active',lang==='en');
-    renderGrids();
-    if(document.getElementById('modal').classList.contains('open')){
-      // se aperto, niente: l'utente richiuderà. Mantengo semplice.
-    }
+    renderHeroes();
   }
 
   // HEADER scroll + burger
@@ -372,7 +481,7 @@
   burger.addEventListener('click',()=>nav.classList.toggle('open'));
   document.getElementById('dropGioco').querySelector('.dropdown-btn').addEventListener('click',e=>{if(window.innerWidth<=880){e.preventDefault();document.getElementById('dropGioco').classList.toggle('open-mob')}});
 
-  renderGrids();
+  renderHeroes();
 </script>
 </body>
 </html>

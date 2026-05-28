@@ -76,6 +76,14 @@
   .modal-close{position:absolute;top:16px;right:18px;width:44px;height:44px;border-radius:50%;background:rgba(10,8,16,0.7);border:1px solid var(--bordo);color:var(--oro-chiaro);font-size:1.6rem;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .25s}
   .modal-close:hover{background:var(--oro);color:var(--nero);transform:rotate(90deg)}
 
+  /* EXTRA MODALE FASE 7: QR + bottoni shop */
+  #mExtra:empty{display:none}
+  #mExtra{margin-top:28px}
+  .modal-qr{display:block;width:100%;max-width:220px;margin:0 auto 26px;border-radius:8px;background:#fff;padding:10px;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+  .modal-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .btn-shop{font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--oro-chiaro);background:transparent;border:1px solid var(--oro);border-radius:4px;padding:13px 24px;cursor:pointer;transition:all .3s;text-align:center}
+  .btn-shop:hover{background:var(--oro);color:var(--nero);box-shadow:0 6px 22px rgba(230,192,104,0.3)}
+
   footer{position:relative;z-index:2;border-top:1px solid var(--bordo);padding:50px 24px 40px;text-align:center;background:rgba(10,8,16,0.7)}
   footer .f-title{font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.2em;color:var(--oro);margin-bottom:12px}
   footer p{font-size:1.3rem;color:var(--testo-soft);margin:4px 0}
@@ -96,6 +104,8 @@
     .tl-item.left .tl-dot,.tl-item.right .tl-dot{left:7px;right:auto}
     .tl-card{max-width:100%}
     .modal{padding:36px 28px 34px}
+    .modal-actions{flex-direction:column}
+    .btn-shop{width:100%}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
@@ -130,7 +140,7 @@
   <div class="page-hero-inner">
     <div class="page-kicker" data-it="Dietro le quinte" data-en="Behind the scenes">Dietro le quinte</div>
     <h1 class="page-title" data-it="Timeline del Progetto" data-en="Project Timeline">Timeline del Progetto</h1>
-    <p class="page-subtitle" data-it="Le dieci fasi che hanno dato vita a Elystria. Tocca ogni tappa per scoprire di più." data-en="The ten phases that brought Elystria to life. Tap each step to learn more.">Le dieci fasi che hanno dato vita a Elystria. Tocca ogni tappa per scoprire di più.</p>
+    <p class="page-subtitle" data-it="Le sette fasi che hanno dato vita a Elystria. Tocca ogni tappa per scoprire di più." data-en="The seven phases that brought Elystria to life. Tap each step to learn more.">Le sette fasi che hanno dato vita a Elystria. Tocca ogni tappa per scoprire di più.</p>
   </div>
 </section>
 
@@ -144,6 +154,7 @@
     <div class="modal-phase" data-it="Fase" data-en="Phase" id="mPhaseLabel">Fase</div>
     <div class="modal-title" id="mTitle"></div>
     <p id="mDesc"></p>
+    <div id="mExtra"></div>
   </div>
 </div>
 
@@ -155,16 +166,13 @@
 
 <script>
   const phases=[
-    {t:{it:"World-building e narrativa",en:"World-building and narrative"},d:{it:"La nascita di Elystria: abbiamo costruito il mondo, la sua mitologia, gli Dei elementali e il conflitto con Zython. È il fondamento su cui poggia tutto il resto.",en:"The birth of Elystria: we built the world, its mythology, the elemental Gods and the conflict with Zython. It is the foundation on which everything else rests."}},
-    {t:{it:"Game Design Document e testi",en:"Game Design Document and texts"},d:{it:"Abbiamo definito le regole del gioco, le meccaniche, la progressione e tutti i testi di gioco nel GDD, il documento guida dello sviluppo.",en:"We defined the game rules, mechanics, progression and all in-game texts in the GDD, the guiding document of development."}},
-    {t:{it:"Generazione dei personaggi",en:"Character generation"},d:{it:"Con l'aiuto dell'intelligenza artificiale (Midjourney) abbiamo dato un volto a Theron, Ophelia, Zython e agli Dei, definendone lo stile visivo.",en:"With the help of artificial intelligence (Midjourney) we gave a face to Theron, Ophelia, Zython and the Gods, defining their visual style."}},
-    {t:{it:"Concept ambientali e prigioni",en:"Environmental concepts and prisons"},d:{it:"Abbiamo progettato i quattro regni elementali e le loro versioni corrotte: il Tempio Sommerso, il Vulcano, la Foresta Distorta e il Santuario Sospeso.",en:"We designed the four elemental realms and their corrupted versions: the Sunken Temple, the Volcano, the Distorted Forest and the Suspended Sanctuary."}},
-    {t:{it:"Animazione degli asset 2D",en:"2D asset animation"},d:{it:"Abbiamo dato vita e movimento alle illustrazioni dei personaggi e degli elementi di gioco, trasformando le immagini statiche in asset animati.",en:"We brought life and movement to the illustrations of characters and game elements, turning static images into animated assets."}},
-    {t:{it:"Montaggio del Teaser Trailer",en:"Teaser Trailer editing"},d:{it:"Con Adobe Premiere abbiamo montato il teaser trailer che presenta il mondo e l'atmosfera di Elystria in modo cinematografico.",en:"With Adobe Premiere we edited the teaser trailer that presents the world and atmosphere of Elystria in a cinematic way."}},
-    {t:{it:"Sound design",en:"Sound design"},d:{it:"Abbiamo curato la colonna sonora e gli effetti audio per rendere ogni scena più immersiva e coinvolgente.",en:"We crafted the soundtrack and audio effects to make each scene more immersive and engaging."}},
-    {t:{it:"Modellazione 3D e stampa",en:"3D modeling and printing"},d:{it:"Abbiamo trasformato i personaggi in modelli 3D (con strumenti come Meshy) ed esportato le mesh in formato STL per la stampa fisica.",en:"We turned the characters into 3D models (with tools like Meshy) and exported the meshes in STL format for physical printing."}},
-    {t:{it:"Sito promozionale e HUD",en:"Promotional website and HUD"},d:{it:"Abbiamo realizzato questo sito promozionale e progettato l'interfaccia di gioco (HUD) con tecnologie web come React.",en:"We built this promotional website and designed the in-game interface (HUD) with web technologies such as React."}},
-    {t:{it:"Brochure e QR Code",en:"Brochure and QR Code"},d:{it:"Infine abbiamo creato una brochure cartacea con un QR Code che collega al progetto digitale, unendo il materiale fisico a quello online.",en:"Finally we created a paper brochure with a QR Code that links to the digital project, joining physical and online material."}}
+    {t:{it:"Brainstorming Narrativo e Creazione del \"Cervello\" di Elystria",en:"Narrative Brainstorming and Creation of the \"Brain\" of Elystria"},d:{it:"Il primo passo è stato dedicato alla scrittura della storia, definendone i dettagli attraverso vari confronti. Successivamente, per gestire la complessità del mondo di Elystria, abbiamo creato una serie di Gem specifiche. Questo ci permette di avere un database intelligente sempre a disposizione per recuperare informazioni e generare i prompt migliori.",en:"The first step was dedicated to writing the story, defining its details through various discussions. Then, to manage the complexity of the world of Elystria, we created a series of specific Gems. This allows us to have an intelligent database always available to retrieve information and generate the best prompts."}},
+    {t:{it:"Concept Testi di Gioco, Art e Character Design/Concept Ambientali",en:"Game Text Concept, Art and Character Design/Environmental Concept"},d:{it:"Questo progetto definisce le regole e l'aspetto del videogioco Elystria. Da un lato stabilisce come si gioca (combattimenti, livelli e comandi), dall'altro crea l'identità visiva del mondo di gioco usando l'intelligenza artificiale (Midjourney). Il cuore del gioco sta nel contrasto: sia i protagonisti e le divinità, sia i quattro regni principali (acqua, fuoco, terra e aria) cambiano radicalmente aspetto e atmosfera, passando da una versione sana a una corrotta.",en:"This project defines the rules and the look of the Elystria video game. On one hand it establishes how it is played (combat, levels and controls), on the other it creates the visual identity of the game world using artificial intelligence (Midjourney). The heart of the game lies in contrast: both the protagonists and the Gods, and the four main realms (water, fire, earth and air) radically change appearance and atmosphere, shifting from a healthy version to a corrupted one."}},
+    {t:{it:"Montaggio Video e Teaser Trailer",en:"Video Editing and Teaser Trailer"},d:{it:"Sviluppo del comparto dinamico bidimensionale: animazione degli asset di gioco, gestione delle transizioni e creazione di effetti visivi. Un pilastro fondamentale per garantire fluidità d'azione, immersività ambientale e una forte identità di movimento all'interno del titolo. L'universo di Elystria prende forma in una sintesi visiva ad alta tensione emotiva. Sviluppato e rifinito in DaVinci Resolve, il teaser trailer unisce ritmo, narrativa e sound design, offrendo una panoramica cinematografica del progetto ideata per catturare l'attenzione del pubblico e presentare il gioco nella sua veste migliore.",en:"Development of the two-dimensional dynamic department: animation of game assets, management of transitions and creation of visual effects. A fundamental pillar to ensure fluidity of action, environmental immersion and a strong identity of movement within the title. The universe of Elystria takes shape in a visual synthesis of high emotional tension. Developed and refined in DaVinci Resolve, the teaser trailer combines rhythm, narrative and sound design, offering a cinematic overview of the project designed to capture the audience's attention and present the game at its best."}},
+    {t:{it:"Audio Design e Direzione Sonora",en:"Audio Design and Sound Direction"},d:{it:"La progettazione dell'architettura sonora del titolo: dallo sviluppo di paesaggi sonori ambientali alla creazione di effetti audio dedicati alle interazioni di gioco. Un lavoro di cura acustica mirato a rafforzare il tono epico della narrazione e a garantire un feedback sonoro immersivo e coerente con l'universo di Elystria.",en:"The design of the title's sound architecture: from the development of ambient soundscapes to the creation of audio effects dedicated to in-game interactions. A work of acoustic care aimed at reinforcing the epic tone of the narrative and ensuring immersive sound feedback consistent with the universe of Elystria."}},
+    {t:{it:"Comunicazione Visiva: Dalla Brochure al Web",en:"Visual Communication: From the Brochure to the Web"},d:{it:"Il coronamento visivo e cartaceo di Elystria. La brochure promozionale unisce la cura del layout editoriale alla tecnologia dei QR Code, creando un ponte interattivo immediato che collega il materiale cartaceo al sito web. Uno strumento cross-mediale progettato per completare la presentazione e arricchire l'esperienza dell'utente.",en:"The visual and printed crowning of Elystria. The promotional brochure combines careful editorial layout with QR Code technology, creating an immediate interactive bridge that connects the printed material to the website. A cross-media tool designed to complete the presentation and enrich the user experience."}},
+    {t:{it:"Modellazione 3D e Stampa Tridimensionale: Zython",en:"3D Modeling and Three-Dimensional Printing: Zython"},d:{it:"Dare forma materica alla minaccia di Elystria. Questa sezione illustra la pipeline di sviluppo dell'asset 3D di Zython, generato digitalmente con Meshy ed esportato in formato STL. Un processo di manifattura e slicing millimetrico che unisce l'art direction virtuale alla creazione di un prototipo fisico reale, capace di catturare l'essenza distruttiva del personaggio.",en:"Giving material form to the threat of Elystria. This section illustrates the development pipeline of the 3D asset of Zython, digitally generated with Meshy and exported in STL format. A process of manufacturing and millimetric slicing that combines virtual art direction with the creation of a real physical prototype, capable of capturing the destructive essence of the character."}},
+    {t:{it:"Frontend Development: Piattaforme Web e Interfacce di Gioco",en:"Frontend Development: Web Platforms and Game Interfaces"},d:{it:"Connettere l'utente all'universo di Elystria, dentro e fuori dallo schermo. Questa sezione illustra lo sviluppo sinergico del sito web promozionale e dell'HUD di gioco, realizzati combinando la solidità di React con l'agilità di sviluppo di Lovable. Il risultato è un ecosistema integrato di interfacce digitali che unisce estetica fantasy e massima usabilità, offrendo un'esperienza utente immersiva, reattiva e ottimizzata.",en:"Connecting the user to the universe of Elystria, on and off the screen. This section illustrates the synergistic development of the promotional website and the in-game HUD, built by combining the solidity of React with the development agility of Lovable. The result is an integrated ecosystem of digital interfaces that combines fantasy aesthetics and maximum usability, offering an immersive, responsive and optimized user experience."}}
   ];
 
   let currentLang='it';
@@ -196,6 +204,17 @@
     document.getElementById('mPhaseLabel').textContent=(currentLang==='it'?'Fase ':'Phase ')+(i+1);
     document.getElementById('mTitle').textContent=p.t[currentLang];
     document.getElementById('mDesc').textContent=p.d[currentLang];
+    const extra=document.getElementById('mExtra');
+    if(i===6){
+      extra.innerHTML=`
+        <img class="modal-qr" src="assets/img/qr_shop.png" alt="QR Code Shop Elystria">
+        <div class="modal-actions">
+          <a class="btn-shop" href="assets/elystria_brochure.pdf" download data-it="Scarica la brochure" data-en="Download the brochure">${currentLang==='it'?'Scarica la brochure':'Download the brochure'}</a>
+          <a class="btn-shop" href="https://landingelystria.growupdigital.it/shop" target="_blank" rel="noopener" data-it="Visita il negozio" data-en="Visit the shop">${currentLang==='it'?'Visita il negozio':'Visit the shop'}</a>
+        </div>`;
+    } else {
+      extra.innerHTML='';
+    }
     document.getElementById('modal').classList.add('open');
     document.body.style.overflow='hidden';
   }
